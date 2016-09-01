@@ -16,35 +16,23 @@
 
 package com.izeye.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Test;
+import org.w3c.dom.Document;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link MapUtils}.
+ * Tests for {@link XmlUtils}.
  *
  * @author Johnny Lim
  */
-public class MapUtilsTests {
+public class XmlUtilsTests {
 
 	@Test
-	public void testGetValueByPath() {
-		Map<String, Object> map = new HashMap<>();
-		Map<String, Object> fullNameMap = new HashMap<>();
-		fullNameMap.put("first_name", "Johnny");
-		fullNameMap.put("last_name", "Lim");
-		map.put("full_name", fullNameMap);
-		map.put("age", 35);
-
-		assertThat(MapUtils.getValueByPath(map, String.class, "full_name", "first_name"))
-				.isEqualTo("Johnny");
-		assertThat(MapUtils.getValueByPath(map, String.class, "full_name", "last_name"))
-				.isEqualTo("Lim");
-		assertThat(MapUtils.getValueByPath(map, Integer.class, "age"))
-				.isEqualTo(35);
+	public void test() {
+		String xml = "<Person><id>1</id><name><firstName>Johnny</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></Person>";
+		Document document = XmlUtils.xml2Document(xml);
+		assertThat(XmlUtils.document2Xml(document)).isEqualTo(xml);
 	}
 
 }
