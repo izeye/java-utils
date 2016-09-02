@@ -1,3 +1,6 @@
 # Created by .gitignore support plugin (hsz.mobi)
+.idea/
 java-utils.iml
-.idea
+
+.gradle/
+build/
