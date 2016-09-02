@@ -16,6 +16,9 @@
 
 package com.izeye.util;
 
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 import org.w3c.dom.Document;
 
@@ -28,11 +31,21 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class XmlUtilsTests {
 
+	private String xml = "<Person><id>1</id><name><firstName>Johnny</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></Person>";
+
 	@Test
-	public void test() {
-		String xml = "<Person><id>1</id><name><firstName>Johnny</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></Person>";
-		Document document = XmlUtils.xml2Document(xml);
-		assertThat(XmlUtils.document2Xml(document)).isEqualTo(xml);
+	public void testDocument2Xml() throws UnsupportedEncodingException {
+		Document document = XmlUtils.xml2Document(this.xml);
+
+		assertThat(XmlUtils.document2Xml(document)).isEqualTo(this.xml);
+	}
+	@Test
+	public void testWriteDocumentToOutputStream() throws UnsupportedEncodingException {
+		Document document = XmlUtils.xml2Document(this.xml);
+
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		XmlUtils.writeDocumentToOutputStream(document, baos);
+		assertThat(baos.toString("UTF-8")).isEqualTo(this.xml);
 	}
 
 }

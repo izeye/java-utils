@@ -18,6 +18,7 @@ package com.izeye.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
@@ -83,12 +84,20 @@ public abstract class XmlUtils {
 	}
 
 	public static String document2Xml(Document document) {
+		StringWriter writer = new StringWriter();
+		writeDocumentToStreamResult(document, new StreamResult(writer));
+		return writer.toString();
+	}
+
+	public static void writeDocumentToOutputStream(Document document, OutputStream outputStream) {
+		writeDocumentToStreamResult(document, new StreamResult(outputStream));
+	}
+
+	private static void writeDocumentToStreamResult(Document document, StreamResult outputTarget) {
 		try {
 			Transformer transformer = TRANSFORMER_FACTORY.get().newTransformer();
 			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-			StringWriter writer = new StringWriter();
-			transformer.transform(new DOMSource(document), new StreamResult(writer));
-			return writer.toString();
+			transformer.transform(new DOMSource(document), outputTarget);
 		}
 		catch (TransformerConfigurationException ex) {
 			throw new RuntimeException(ex);
