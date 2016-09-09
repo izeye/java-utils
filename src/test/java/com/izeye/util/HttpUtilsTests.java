@@ -31,20 +31,22 @@ public class HttpUtilsTests {
 
 	@Test
 	public void testParseCookieHeaderValue() {
-		String cookieHeaderValue = "a=b; c=d; e=";
+		String cookieHeaderValue = "a=b; c=d; e=; f=g==";
 		Map<String, String> cookies = HttpUtils.parseCookieHeaderValue(cookieHeaderValue);
-		assertThat(cookies.size()).isEqualTo(3);
+		assertThat(cookies.size()).isEqualTo(4);
 		assertThat(cookies.get("a")).isEqualTo("b");
 		assertThat(cookies.get("c")).isEqualTo("d");
 		assertThat(cookies.get("e")).isEmpty();
+		assertThat(cookies.get("f")).isEqualTo("g==");
 	}
 
 	@Test
 	public void testExtractCookieValue() {
-		String cookieHeaderValue = "a=b; c=d; e=";
+		String cookieHeaderValue = "a=b; c=d; e=; f=g==";
 		assertThat(HttpUtils.extractCookieValue(cookieHeaderValue, "a")).isEqualTo("b");
 		assertThat(HttpUtils.extractCookieValue(cookieHeaderValue, "c")).isEqualTo("d");
 		assertThat(HttpUtils.extractCookieValue(cookieHeaderValue, "e")).isEmpty();
+		assertThat(HttpUtils.extractCookieValue(cookieHeaderValue, "f")).isEqualTo("g==");
 	}
 
 }

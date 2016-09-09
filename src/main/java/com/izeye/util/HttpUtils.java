@@ -26,15 +26,21 @@ import java.util.Map;
  */
 public abstract class HttpUtils {
 
+	private static final String DELIMITER_COOKIE = ";";
+	private static final char DELIMITER_COOKIE_KEY_VALUE = '=';
+
 	private HttpUtils() {
 	}
 
 	public static Map<String, String> parseCookieHeaderValue(String cookieHeaderValue) {
 		Map<String, String> cookies = new HashMap<>();
-		String[] cookieTokens = cookieHeaderValue.split(";");
+		String[] cookieTokens = cookieHeaderValue.split(DELIMITER_COOKIE);
 		for (String cookieToken : cookieTokens) {
-			String[] cookieNameValue = cookieToken.trim().split("=");
-			cookies.put(cookieNameValue[0], cookieNameValue.length == 1 ? "" : cookieNameValue[1]);
+			String trimmed = cookieToken.trim();
+			int index = trimmed.indexOf(DELIMITER_COOKIE_KEY_VALUE);
+			String name = trimmed.substring(0, index);
+			String value = trimmed.substring(index + 1);
+			cookies.put(name, value);
 		}
 		return cookies;
 	}
