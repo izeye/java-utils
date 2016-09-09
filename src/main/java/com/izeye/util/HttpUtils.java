@@ -34,7 +34,7 @@ public abstract class HttpUtils {
 		String[] cookieTokens = cookieHeaderValue.split(";");
 		for (String cookieToken : cookieTokens) {
 			String[] cookieNameValue = cookieToken.trim().split("=");
-			cookies.put(cookieNameValue[0], cookieNameValue[1]);
+			cookies.put(cookieNameValue[0], cookieNameValue.length == 1 ? "" : cookieNameValue[1]);
 		}
 		return cookies;
 	}
