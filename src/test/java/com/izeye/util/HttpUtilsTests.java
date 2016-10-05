@@ -16,6 +16,8 @@
 
 package com.izeye.util;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.Test;
@@ -53,6 +55,16 @@ public class HttpUtilsTests {
 	public void testParseQueryString() {
 		assertThat(HttpUtils.parseQueryString("a=1")).hasSize(1).containsEntry("a", "1");
 		assertThat(HttpUtils.parseQueryString("a=1&b=2")).hasSize(2).containsEntry("a", "1").containsEntry("b", "2");
+	}
+
+	@Test
+	public void testBuildQueryString() {
+		assertThat(HttpUtils.buildQueryString(Collections.singletonMap("a", "1"))).isEqualTo("a=1");
+
+		Map<String, Object> parameters = new LinkedHashMap<>();
+		parameters.put("a", 1);
+		parameters.put("b", 2);
+		assertThat(HttpUtils.buildQueryString(parameters)).isEqualTo("a=1&b=2");
 	}
 
 }

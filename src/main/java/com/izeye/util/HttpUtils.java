@@ -61,4 +61,19 @@ public abstract class HttpUtils {
 		return parameters;
 	}
 
+	public static String buildQueryString(Map<String, ?> parameters) {
+		if (parameters.isEmpty()) {
+			return "";
+		}
+		StringBuilder sb = new StringBuilder();
+		for (Map.Entry<String, ?> parameter : parameters.entrySet()) {
+			sb.append(parameter.getKey());
+			sb.append('=');
+			sb.append(parameter.getValue());
+			sb.append('&');
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		return sb.toString();
+	}
+
 }
