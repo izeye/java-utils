@@ -29,6 +29,9 @@ public abstract class HttpUtils {
 	private static final String DELIMITER_COOKIE = ";";
 	private static final char DELIMITER_COOKIE_KEY_VALUE = '=';
 
+	private static final String DELIMITER_PARAMETER = "&";
+	private static final String DELIMITER_PARAMETER_NAME_VALUE = "=";
+
 	private HttpUtils() {
 	}
 
@@ -51,9 +54,9 @@ public abstract class HttpUtils {
 
 	public static Map<String, String> parseQueryString(String queryString) {
 		Map<String, String> parameters = new HashMap<>();
-		String[] parameterPairs = queryString.split("&");
+		String[] parameterPairs = queryString.split(DELIMITER_PARAMETER);
 		for (String parameterPair : parameterPairs) {
-			String[] nameAndValue = parameterPair.split("=");
+			String[] nameAndValue = parameterPair.split(DELIMITER_PARAMETER_NAME_VALUE);
 			String name = nameAndValue[0];
 			String value = nameAndValue[1];
 			parameters.put(name, value);
@@ -68,9 +71,9 @@ public abstract class HttpUtils {
 		StringBuilder sb = new StringBuilder();
 		for (Map.Entry<String, ?> parameter : parameters.entrySet()) {
 			sb.append(parameter.getKey());
-			sb.append('=');
+			sb.append(DELIMITER_PARAMETER_NAME_VALUE);
 			sb.append(parameter.getValue());
-			sb.append('&');
+			sb.append(DELIMITER_PARAMETER);
 		}
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
