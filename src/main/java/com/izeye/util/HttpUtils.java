@@ -49,4 +49,16 @@ public abstract class HttpUtils {
 		return parseCookieHeaderValue(cookieHeaderValue).get(cookieName);
 	}
 
+	public static Map<String, String> parseQueryString(String queryString) {
+		Map<String, String> parameters = new HashMap<>();
+		String[] parameterPairs = queryString.split("&");
+		for (String parameterPair : parameterPairs) {
+			String[] nameAndValue = parameterPair.split("=");
+			String name = nameAndValue[0];
+			String value = nameAndValue[1];
+			parameters.put(name, value);
+		}
+		return parameters;
+	}
+
 }
