@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class XmlUtilsTests {
 
-	private String xml = "<Person><id>1</id><name><firstName>Johnny</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></Person>";
+	private String xml = "<person><id>1</id><name><firstName>Johnny</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></person>";
 
 	@Test
 	public void testDocument2Xml() throws UnsupportedEncodingException {
@@ -39,6 +39,7 @@ public class XmlUtilsTests {
 
 		assertThat(XmlUtils.document2Xml(document)).isEqualTo(this.xml);
 	}
+
 	@Test
 	public void testWriteDocumentToOutputStream() throws UnsupportedEncodingException {
 		Document document = XmlUtils.xml2Document(this.xml);
