@@ -21,6 +21,8 @@ import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,6 +49,16 @@ public class XmlUtilsTests {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		XmlUtils.writeDocumentToOutputStream(document, baos);
 		assertThat(baos.toString("UTF-8")).isEqualTo(this.xml);
+	}
+
+	@Test
+	public void testGetTextContent() {
+		Document document = XmlUtils.xml2Document(this.xml);
+
+		NodeList personNodeList = document.getElementsByTagName("person");
+		Element personElement = (Element) personNodeList.item(0);
+		assertThat(XmlUtils.getTextContent(personElement, "firstName")).isEqualTo("Johnny");
+		assertThat(XmlUtils.getTextContent(personElement, "middleName")).isNull();
 	}
 
 }

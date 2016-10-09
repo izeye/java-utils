@@ -34,6 +34,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -91,6 +93,14 @@ public abstract class XmlUtils {
 
 	public static void writeDocumentToOutputStream(Document document, OutputStream outputStream) {
 		writeDocumentToStreamResult(document, new StreamResult(outputStream));
+	}
+
+	public static String getTextContent(Element element, String tagName) {
+		NodeList nodeList = element.getElementsByTagName(tagName);
+		if (nodeList.getLength() == 0) {
+			return null;
+		}
+		return nodeList.item(0).getTextContent();
 	}
 
 	private static void writeDocumentToStreamResult(Document document, StreamResult outputTarget) {
