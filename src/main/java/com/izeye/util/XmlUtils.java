@@ -103,6 +103,16 @@ public abstract class XmlUtils {
 		return nodeList.item(0).getTextContent();
 	}
 
+	public static Document createDocument() {
+		try {
+			DocumentBuilder builder = DOCUMENT_BUILDER_FACTORY.get().newDocumentBuilder();
+			return builder.newDocument();
+		}
+		catch (ParserConfigurationException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
 	private static void writeDocumentToStreamResult(Document document, StreamResult outputTarget) {
 		try {
 			Transformer transformer = TRANSFORMER_FACTORY.get().newTransformer();
