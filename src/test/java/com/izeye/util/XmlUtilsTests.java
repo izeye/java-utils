@@ -66,7 +66,7 @@ public class XmlUtilsTests {
 	@Test
 	public void testCreateDocument() {
 		Document firstDocument = XmlUtils.createDocument();
-		Element rootElement = XmlUtils.appendElementTextContent(firstDocument, "root");
+		Element rootElement = XmlUtils.appendElement(firstDocument, "root");
 		XmlUtils.appendElementTextContent(rootElement, "child", "This is a child.");
 		System.out.println(XmlUtils.document2Xml(firstDocument));
 
@@ -83,8 +83,8 @@ public class XmlUtilsTests {
 		map.put("age", 20);
 
 		Document document = XmlUtils.createDocument();
-		Element personsElement = XmlUtils.appendElementTextContent(document, "persons");
-		Element personElement = XmlUtils.appendElementTextContent(personsElement, "person");
+		Element personsElement = XmlUtils.appendElement(document, "persons");
+		Element personElement = XmlUtils.appendElement(personsElement, "person");
 		XmlUtils.appendElementTextContent(personElement, map);
 		System.out.println(XmlUtils.document2Xml(document));
 	}

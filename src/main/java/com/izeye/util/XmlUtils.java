@@ -115,7 +115,7 @@ public abstract class XmlUtils {
 		}
 	}
 
-	public static Element appendElementTextContent(Node parent, String name) {
+	public static Element appendElement(Node parent, String name) {
 		return appendElementTextContent(parent, name, null);
 	}
 
