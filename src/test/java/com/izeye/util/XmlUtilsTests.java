@@ -18,11 +18,12 @@ package com.izeye.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,17 +66,27 @@ public class XmlUtilsTests {
 	@Test
 	public void testCreateDocument() {
 		Document firstDocument = XmlUtils.createDocument();
-		Element rootElement = firstDocument.createElement("root");
-		firstDocument.appendChild(rootElement);
-
-		Element childElement = firstDocument.createElement("child");
-		rootElement.appendChild(childElement);
+		Element rootElement = XmlUtils.appendElementTextContent(firstDocument, "root");
+		XmlUtils.appendElementTextContent(rootElement, "child", "This is a child.");
 		System.out.println(XmlUtils.document2Xml(firstDocument));
 
 		Document secondDocument = XmlUtils.createDocument();
-		Node importedRootElement = secondDocument.importNode(rootElement, true);
-		secondDocument.appendChild(importedRootElement);
+		XmlUtils.importAndAppendElement(secondDocument, rootElement);
 		System.out.println(XmlUtils.document2Xml(secondDocument));
+	}
+
+	@Test
+	public void testAppendElementTextContentWithMap() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("firstName", "Johnny");
+		map.put("lastName", "Lim");
+		map.put("age", 20);
+
+		Document document = XmlUtils.createDocument();
+		Element personsElement = XmlUtils.appendElementTextContent(document, "persons");
+		Element personElement = XmlUtils.appendElementTextContent(personsElement, "person");
+		XmlUtils.appendElementTextContent(personElement, map);
+		System.out.println(XmlUtils.document2Xml(document));
 	}
 
 }

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,6 +36,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -111,6 +113,42 @@ public abstract class XmlUtils {
 		catch (ParserConfigurationException ex) {
 			throw new RuntimeException(ex);
 		}
+	}
+
+	public static Element appendElementTextContent(Node parent, String name) {
+		return appendElementTextContent(parent, name, null);
+	}
+
+	public static Element appendElementTextContent(Node parent, String name, String textContent) {
+		Document ownerDocument = getOwnerDocument(parent);
+		Element element = ownerDocument.createElement(name);
+		if (textContent != null) {
+			element.setTextContent(textContent);
+		}
+		parent.appendChild(element);
+		return element;
+	}
+
+	public static void appendElementTextContent(Node parent, Map<String, Object> map) {
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+			Object value = entry.getValue();
+			if (value != null) {
+				appendElementTextContent(parent, entry.getKey(), value.toString());
+			}
+		}
+	}
+
+	private static Document getOwnerDocument(Node parent) {
+		if (parent instanceof Document) {
+			return (Document) parent;
+		}
+		return parent.getOwnerDocument();
+	}
+
+	public static Element importAndAppendElement(Node parent, Element element) {
+		Element imported = (Element) getOwnerDocument(parent).importNode(element, true);
+		parent.appendChild(imported);
+		return imported;
 	}
 
 	private static void writeDocumentToStreamResult(Document document, StreamResult outputTarget) {
