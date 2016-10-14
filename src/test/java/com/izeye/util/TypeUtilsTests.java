@@ -47,4 +47,10 @@ public class TypeUtilsTests {
 		assertThat(TypeUtils.bytes2ZeroLeadingBinaryString(bytes)).isEqualTo(expected);
 	}
 
+	@Test
+	public void testParseInt() {
+		assertThat(TypeUtils.parseInt(null, 1)).isEqualTo(1);
+		assertThat(TypeUtils.parseInt("2", 1)).isEqualTo(2);
+	}
+
 }

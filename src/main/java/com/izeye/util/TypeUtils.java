@@ -44,4 +44,8 @@ public abstract class TypeUtils {
 		return sb.toString();
 	}
 
+	public static int parseInt(String value, int defaultValue) {
+		return value == null ? defaultValue : Integer.parseInt(value);
+	}
+
 }
