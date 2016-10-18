@@ -55,6 +55,8 @@ public class HttpUtilsTests {
 	public void testParseQueryString() {
 		assertThat(HttpUtils.parseQueryString("a=1")).hasSize(1).containsEntry("a", "1");
 		assertThat(HttpUtils.parseQueryString("a=1&b=2")).hasSize(2).containsEntry("a", "1").containsEntry("b", "2");
+		assertThat(HttpUtils.parseQueryString("a=1&b=")).hasSize(1).containsEntry("a", "1");
+		assertThat(HttpUtils.parseQueryString("a=1&b=2&c=")).hasSize(2).containsEntry("a", "1").containsEntry("b", "2");
 	}
 
 	@Test

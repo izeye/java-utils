@@ -57,9 +57,11 @@ public abstract class HttpUtils {
 		String[] parameterPairs = queryString.split(DELIMITER_PARAMETER);
 		for (String parameterPair : parameterPairs) {
 			String[] nameAndValue = parameterPair.split(DELIMITER_PARAMETER_NAME_VALUE);
-			String name = nameAndValue[0];
-			String value = nameAndValue[1];
-			parameters.put(name, value);
+			if (nameAndValue.length == 2) {
+				String name = nameAndValue[0];
+				String value = nameAndValue[1];
+				parameters.put(name, value);
+			}
 		}
 		return parameters;
 	}
