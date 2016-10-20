@@ -26,17 +26,25 @@ import org.junit.Test;
 public class ElasticsearchUtilsTests {
 
 	// To prepare this test, do as follows:
-	// curl -XPOST localhost:9200/website/blog?pretty -d '{title: "Title1", content: "Content1"}'
-	// curl -XPOST localhost:9200/website/blog?pretty -d '{title: "Title2", content: "Content2"}'
+	// curl -XPOST localhost:9200/persons/persons?pretty -d '{firstName: "Johnny", lastName: "Lim", age: 20}'
+	// curl -XPOST localhost:9200/persons/persons?pretty -d '{firstName: "John", lastName: "Kim", age: 30}'
 	@Test
 	public void testSearch() {
 		String clusterName = "elasticsearch";
 		String hostname = "localhost";
-		String indexName = "website";
+		String indexName = "persons";
 		int port = ElasticsearchUtils.NATIVE_PORT;
-		String query = "{query: {match_all: {}}}";
 
+		String query = "{query: {match_all: {}}}";
 		String response = ElasticsearchUtils.search(clusterName, hostname, port, indexName, query);
+		System.out.println(response);
+
+		query = "{query: {term: {age: 20}}}";
+		response = ElasticsearchUtils.search(clusterName, hostname, port, indexName, query);
+		System.out.println(response);
+
+		query = "{query: {match: {firstName: \"Johnny\"}}}";
+		response = ElasticsearchUtils.search(clusterName, hostname, port, indexName, query);
 		System.out.println(response);
 	}
 
