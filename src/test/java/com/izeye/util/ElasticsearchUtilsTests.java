@@ -16,6 +16,7 @@
 
 package com.izeye.util;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -28,6 +29,7 @@ public class ElasticsearchUtilsTests {
 	// To prepare this test, do as follows:
 	// curl -XPOST localhost:9200/persons/persons?pretty -d '{firstName: "Johnny", lastName: "Lim", age: 20}'
 	// curl -XPOST localhost:9200/persons/persons?pretty -d '{firstName: "John", lastName: "Kim", age: 30}'
+	@Ignore
 	@Test
 	public void testSearch() {
 		String clusterName = "elasticsearch";
