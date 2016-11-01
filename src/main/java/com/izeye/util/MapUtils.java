@@ -16,7 +16,9 @@
 
 package com.izeye.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +39,15 @@ public abstract class MapUtils {
 		}
 		return getValueByPath(
 				(Map<String, Object>) map.get(key), returnType, Arrays.copyOfRange(path, 1, path.length));
+	}
+
+	public static <K, V> void putValueIntoList(Map<K, List<V>> map, K key, V value) {
+		List<V> values = map.get(key);
+		if (values == null) {
+			values = new ArrayList<>();
+			map.put(key, values);
+		}
+		values.add(value);
 	}
 
 }

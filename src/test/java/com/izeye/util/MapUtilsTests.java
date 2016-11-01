@@ -17,6 +17,7 @@
 package com.izeye.util;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -45,6 +46,17 @@ public class MapUtilsTests {
 				.isEqualTo("Lim");
 		assertThat(MapUtils.getValueByPath(map, Integer.class, "age"))
 				.isEqualTo(35);
+	}
+
+	@Test
+	public void testPutValueIntoList() {
+		Map<String, List<Integer>> map = new HashMap<>();
+
+		MapUtils.putValueIntoList(map, "a", 1);
+		assertThat(map.get("a")).containsExactly(1);
+
+		MapUtils.putValueIntoList(map, "a", 2);
+		assertThat(map.get("a")).containsExactly(1, 2);
 	}
 
 }
