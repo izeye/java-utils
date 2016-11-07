@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -134,6 +136,30 @@ public abstract class XmlUtils {
 			Object value = entry.getValue();
 			if (value != null) {
 				appendElementTextContent(parent, entry.getKey(), value.toString());
+			}
+		}
+	}
+
+	public static Set<String> getChildElementNames(Node parent) {
+		Set<String> childElementNames = new HashSet<>();
+		NodeList childNodes = parent.getChildNodes();
+		for (int i = 0; i < childNodes.getLength(); i++) {
+			Node node = childNodes.item(i);
+			childElementNames.add(node.getNodeName());
+		}
+		return childElementNames;
+	}
+
+	public static void appendElementTextContentIfAbsent(Node parent, Map<String, Object> map) {
+		Set<String> childElementNames = getChildElementNames(parent);
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+			String key = entry.getKey();
+			if (childElementNames.contains(key)) {
+				continue;
+			}
+			Object value = entry.getValue();
+			if (value != null) {
+				appendElementTextContent(parent, key, value.toString());
 			}
 		}
 	}

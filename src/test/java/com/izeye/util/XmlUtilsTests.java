@@ -89,4 +89,34 @@ public class XmlUtilsTests {
 		System.out.println(XmlUtils.document2Xml(document));
 	}
 
+	@Test
+	public void testGetChildElementNames() {
+		Document document = XmlUtils.createDocument();
+		Element personsElement = XmlUtils.appendElement(document, "persons");
+		Element personElement = XmlUtils.appendElement(personsElement, "person");
+		XmlUtils.appendElementTextContent(personElement, "firstName", "John");
+		XmlUtils.appendElementTextContent(personElement, "lastName", "Kim");
+		assertThat(XmlUtils.getChildElementNames(personElement))
+				.containsExactly("firstName", "lastName");
+	}
+
+	@Test
+	public void testAppendElementTextContentIfAbsentWithMap() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("firstName", "Johnny");
+		map.put("lastName", "Lim");
+		map.put("age", 20);
+
+		Document document = XmlUtils.createDocument();
+		Element personsElement = XmlUtils.appendElement(document, "persons");
+		Element personElement = XmlUtils.appendElement(personsElement, "person");
+		XmlUtils.appendElementTextContent(personElement, "firstName", "John");
+		XmlUtils.appendElementTextContent(personElement, "lastName", "Kim");
+
+		XmlUtils.appendElementTextContentIfAbsent(personElement, map);
+		String xml = XmlUtils.document2Xml(document);
+		System.out.println(xml);
+		assertThat(xml).isEqualTo("<persons><person><firstName>John</firstName><lastName>Kim</lastName><age>20</age></person></persons>");
+	}
+
 }
