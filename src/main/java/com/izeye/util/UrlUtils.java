@@ -25,6 +25,11 @@ public abstract class UrlUtils {
 
 	private static final String PROTOCOL_DELIMITER = "://";
 	private static final String HTTP_PROTOCOL = "http";
+	private static final String QUERY_STRING_START_CHAR = "?";
+	private static final String PARAMETER_DELIMITER = "&";
+	private static final String PARAMETER_NAME_VALUE_DELIMITER = "=";
+	private static final String FRAGMENT_START_CHAR = "#";
+
 
 	private UrlUtils() {
 	}
@@ -38,6 +43,31 @@ public abstract class UrlUtils {
 			return url;
 		}
 		return HTTP_PROTOCOL + PROTOCOL_DELIMITER + url;
+	}
+
+	public static String addParameter(String url, String name, String value) {
+		int fragmentStartIndex = url.indexOf(FRAGMENT_START_CHAR);
+		String fragment = null;
+		if (fragmentStartIndex != -1) {
+			fragment = url.substring(fragmentStartIndex);
+			url = url.substring(0, fragmentStartIndex);
+		}
+		if (!url.contains(QUERY_STRING_START_CHAR)) {
+			url += QUERY_STRING_START_CHAR;
+		}
+		else {
+			url += PARAMETER_DELIMITER;
+		}
+		url += encodeParameter(name, value);
+		if (fragment != null) {
+			url += fragment;
+		}
+		return url;
+	}
+
+	private static String encodeParameter(String name, String value) {
+		String encodedValue = UrlEncodingUtils.encode(value);
+		return name + PARAMETER_NAME_VALUE_DELIMITER + encodedValue;
 	}
 
 }
