@@ -19,7 +19,6 @@ package com.izeye.util.uuid;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Base64;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -56,7 +55,6 @@ public class SecureTimestampBasedUUIDGenerator implements TimestampBasedUUIDGene
 	}
 
 	private final AtomicInteger counter = new AtomicInteger();
-	private final Random random = ThreadLocalRandom.current();
 
 	@Override
 	public String generate(long timestampInMillis) {
