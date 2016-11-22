@@ -119,4 +119,16 @@ public class XmlUtilsTests {
 		assertThat(xml).isEqualTo("<persons><person><firstName>John</firstName><lastName>Kim</lastName><age>20</age></person></persons>");
 	}
 
+	@Test
+	public void testXml2DocumentWithEmoji() {
+		String xml = "<person><id>1</id><name><firstName>Johnny🍎</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></person>";
+		Document document = XmlUtils.xml2Document(xml);
+
+		NodeList personNodeList = document.getElementsByTagName("person");
+		Element personElement = (Element) personNodeList.item(0);
+		String firstName = XmlUtils.getTextContent(personElement, "firstName");
+		System.out.println("firstName: '" + firstName + "'");
+		assertThat(firstName).isEqualTo("Johnny\uD83C\uDF4E");
+	}
+
 }
