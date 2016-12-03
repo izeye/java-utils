@@ -36,7 +36,7 @@ public class DefaultServiceMetricsCollector implements ServiceMetricsCollector {
 	}
 
 	@Override
-	public void collect(int processTimeInMillis) {
+	public void collect(long processTimeInMillis) {
 		this.requestCount.increment();
 		if (processTimeInMillis > timeoutInMillis) {
 			this.timeoutCount.increment();

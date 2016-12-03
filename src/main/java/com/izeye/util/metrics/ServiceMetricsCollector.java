@@ -23,7 +23,7 @@ package com.izeye.util.metrics;
  */
 public interface ServiceMetricsCollector {
 
-	void collect(int processTimeInMillis);
+	void collect(long processTimeInMillis);
 
 	ServiceMetrics getThenReset();
 

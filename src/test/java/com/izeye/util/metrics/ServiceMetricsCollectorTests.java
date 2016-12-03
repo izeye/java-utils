@@ -33,38 +33,38 @@ public class ServiceMetricsCollectorTests {
 		ServiceMetricsCollector serviceMetricsCollector =
 				new DefaultServiceMetricsCollector(timeoutInMillis);
 
-		serviceMetricsCollector.collect(50);
-		serviceMetricsCollector.collect(99);
-		serviceMetricsCollector.collect(100);
-		serviceMetricsCollector.collect(101);
-		serviceMetricsCollector.collect(1000);
+		serviceMetricsCollector.collect(50L);
+		serviceMetricsCollector.collect(99L);
+		serviceMetricsCollector.collect(100L);
+		serviceMetricsCollector.collect(101L);
+		serviceMetricsCollector.collect(1000L);
 		ServiceMetrics serviceMetrics = serviceMetricsCollector.getThenReset();
 		System.out.println(serviceMetrics);
 		System.out.println(serviceMetrics.getTimeoutRatioInPercent());
-		assertThat(serviceMetrics.getRequestCount()).isEqualTo(5);
-		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(2);
+		assertThat(serviceMetrics.getRequestCount()).isEqualTo(5L);
+		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(2L);
 		assertThat(serviceMetrics.getAverageProcessTimeInMillis())
-				.isEqualTo((50 + 99 + 100 + 101 + 1000) / 5);
+				.isEqualTo((50L + 99L + 100L + 101L + 1000L) / 5L);
 
 		serviceMetrics = serviceMetricsCollector.getThenReset();
 		System.out.println(serviceMetrics);
 		System.out.println(serviceMetrics.getTimeoutRatioInPercent());
-		assertThat(serviceMetrics.getRequestCount()).isEqualTo(0);
-		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(0);
-		assertThat(serviceMetrics.getAverageProcessTimeInMillis()).isEqualTo(0);
+		assertThat(serviceMetrics.getRequestCount()).isEqualTo(0L);
+		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(0L);
+		assertThat(serviceMetrics.getAverageProcessTimeInMillis()).isEqualTo(0L);
 
-		serviceMetricsCollector.collect(50);
-		serviceMetricsCollector.collect(99);
-		serviceMetricsCollector.collect(100);
-		serviceMetricsCollector.collect(101);
-		serviceMetricsCollector.collect(1000);
+		serviceMetricsCollector.collect(50L);
+		serviceMetricsCollector.collect(99L);
+		serviceMetricsCollector.collect(100L);
+		serviceMetricsCollector.collect(101L);
+		serviceMetricsCollector.collect(1000L);
 		serviceMetrics = serviceMetricsCollector.getThenReset();
 		System.out.println(serviceMetrics);
 		System.out.println(serviceMetrics.getTimeoutRatioInPercent());
-		assertThat(serviceMetrics.getRequestCount()).isEqualTo(5);
-		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(2);
+		assertThat(serviceMetrics.getRequestCount()).isEqualTo(5L);
+		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(2L);
 		assertThat(serviceMetrics.getAverageProcessTimeInMillis())
-				.isEqualTo((50 + 99 + 100 + 101 + 1000) / 5);
+				.isEqualTo((50L + 99L + 100L + 101L + 1000L) / 5L);
 	}
 
 }
