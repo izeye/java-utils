@@ -33,7 +33,7 @@ public class StopwatchTests {
 		stopwatch.start();
 		TimeUnit.MILLISECONDS.sleep(100);
 		stopwatch.stop();
-		System.out.println(stopwatch.getElapsedTime());
+		System.out.println(stopwatch.getElapsedTimeInMillis());
 	}
 
 }
