@@ -40,6 +40,7 @@ public class ServiceMetricsCollectorTests {
 		serviceMetricsCollector.collect(1000);
 		ServiceMetrics serviceMetrics = serviceMetricsCollector.getThenReset();
 		System.out.println(serviceMetrics);
+		System.out.println(serviceMetrics.getTimeoutRatioInPercent());
 		assertThat(serviceMetrics.getRequestCount()).isEqualTo(5);
 		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(2);
 		assertThat(serviceMetrics.getAverageProcessTimeInMillis())
@@ -47,6 +48,7 @@ public class ServiceMetricsCollectorTests {
 
 		serviceMetrics = serviceMetricsCollector.getThenReset();
 		System.out.println(serviceMetrics);
+		System.out.println(serviceMetrics.getTimeoutRatioInPercent());
 		assertThat(serviceMetrics.getRequestCount()).isEqualTo(0);
 		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(0);
 		assertThat(serviceMetrics.getAverageProcessTimeInMillis()).isEqualTo(0);
@@ -58,6 +60,7 @@ public class ServiceMetricsCollectorTests {
 		serviceMetricsCollector.collect(1000);
 		serviceMetrics = serviceMetricsCollector.getThenReset();
 		System.out.println(serviceMetrics);
+		System.out.println(serviceMetrics.getTimeoutRatioInPercent());
 		assertThat(serviceMetrics.getRequestCount()).isEqualTo(5);
 		assertThat(serviceMetrics.getTimeoutCount()).isEqualTo(2);
 		assertThat(serviceMetrics.getAverageProcessTimeInMillis())
