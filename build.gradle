@@ -34,6 +34,7 @@ repositories {
 dependencies {
     compile("org.elasticsearch:elasticsearch")
     compile("ch.qos.logback:logback-classic")
+    compile("javax.servlet:javax.servlet-api")
 
     provided("org.projectlombok:lombok")
 
