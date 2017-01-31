@@ -31,8 +31,8 @@ public class CollectionUtilsTests {
 
 	@Test
 	public void testAsUnmodifiableSet() {
-		Set<String> set = CollectionUtils.asUnmodifiableSet("a", "b");
-		assertThat(set).containsExactlyInAnyOrder("a", "b");
+		Set<String> set = CollectionUtils.asUnmodifiableSet("aa", "bb");
+		assertThat(set).containsExactlyInAnyOrder("bb", "aa");
 	}
 
 }
