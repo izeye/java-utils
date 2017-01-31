@@ -31,8 +31,9 @@ public final class CollectionUtils {
 	private CollectionUtils() {
 	}
 
-	public static <T> Set<T> createUnmodifiableSet(T... a) {
-		return Collections.unmodifiableSet(new HashSet<T>(Arrays.asList(a)));
+	@SafeVarargs
+	public static <T> Set<T> asUnmodifiableSet(T... a) {
+		return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(a)));
 	}
 
 }

@@ -30,8 +30,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CollectionUtilsTests {
 
 	@Test
-	public void testCreateUnmodifiableSet() {
-		Set<String> set = CollectionUtils.createUnmodifiableSet("a", "b");
+	public void testAsUnmodifiableSet() {
+		Set<String> set = CollectionUtils.asUnmodifiableSet("a", "b");
 		assertThat(set).containsExactly("a", "b");
 	}
 
