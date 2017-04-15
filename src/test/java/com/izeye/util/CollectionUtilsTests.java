@@ -51,4 +51,17 @@ public class CollectionUtilsTests {
 		assertThat(filtered).containsEntry("name", "Johnny");
 	}
 
+	@Test
+	public void testFilterWithWhitelistMapStringString() {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", "Johnny");
+		map.put("age", "20");
+
+		Set<String> whitelist = Collections.singleton("name");
+
+		Map<String, String> filtered = CollectionUtils.filterWithWhitelist(map, whitelist);
+
+		assertThat(filtered).containsEntry("name", "Johnny");
+	}
+
 }
