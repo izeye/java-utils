@@ -27,11 +27,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class ExceptionUtilsTests {
 
-    @Test
-    public void testHasCause() {
-        RuntimeException ex = new RuntimeException(new IllegalArgumentException());
-        assertThat(ExceptionUtils.hasCause(ex, IllegalArgumentException.class)).isTrue();
-        assertThat(ExceptionUtils.hasCause(ex, IllegalStateException.class)).isFalse();
-    }
+	@Test
+	public void testHasCause() {
+		RuntimeException ex = new RuntimeException(new IllegalArgumentException());
+		assertThat(ExceptionUtils.hasCause(ex, IllegalArgumentException.class)).isTrue();
+		assertThat(ExceptionUtils.hasCause(ex, IllegalStateException.class)).isFalse();
+	}
 
 }

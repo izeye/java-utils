@@ -23,18 +23,18 @@ package com.izeye.util;
  */
 public final class ExceptionUtils {
 
-    private ExceptionUtils() {
-    }
+	private ExceptionUtils() {
+	}
 
-    public static boolean hasCause(Throwable ex, Class<? extends Throwable> causeClass) {
-        Throwable cause = ex;
-        while (cause != null) {
-            if (causeClass.isInstance(cause)) {
-                return true;
-            }
-            cause = cause.getCause();
-        }
-        return false;
-    }
+	public static boolean hasCause(Throwable ex, Class<? extends Throwable> causeClass) {
+		Throwable cause = ex;
+		while (cause != null) {
+			if (causeClass.isInstance(cause)) {
+				return true;
+			}
+			cause = cause.getCause();
+		}
+		return false;
+	}
 
 }
