@@ -18,7 +18,9 @@ package com.izeye.util;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -34,6 +36,17 @@ public final class CollectionUtils {
 	@SafeVarargs
 	public static <T> Set<T> asUnmodifiableSet(T... a) {
 		return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(a)));
+	}
+
+	public static Map<String, Object> filterWithWhitelist(Map<String, Object> map, Set<String> whitelist) {
+		Map<String, Object> filtered = new HashMap<>();
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+			String key = entry.getKey();
+			if (whitelist.contains(key)) {
+				filtered.put(key, entry.getValue());
+			}
+		}
+		return filtered;
 	}
 
 }

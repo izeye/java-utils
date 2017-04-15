@@ -16,6 +16,9 @@
 
 package com.izeye.util;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
@@ -33,6 +36,19 @@ public class CollectionUtilsTests {
 	public void testAsUnmodifiableSet() {
 		Set<String> set = CollectionUtils.asUnmodifiableSet("aa", "bb");
 		assertThat(set).containsExactlyInAnyOrder("bb", "aa");
+	}
+
+	@Test
+	public void testFilterWithWhitelist() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", "Johnny");
+		map.put("age", 20);
+
+		Set<String> whitelist = Collections.singleton("name");
+
+		Map<String, Object> filtered = CollectionUtils.filterWithWhitelist(map, whitelist);
+
+		assertThat(filtered).containsEntry("name", "Johnny");
 	}
 
 }
