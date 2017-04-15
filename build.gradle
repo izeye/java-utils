@@ -30,9 +30,10 @@ repositories {
 }
 
 dependencies {
-    compile("org.elasticsearch:elasticsearch")
     compile("ch.qos.logback:logback-classic")
+    compile("com.fasterxml.jackson.core:jackson-databind")
     compile("javax.servlet:javax.servlet-api")
+    compile("org.elasticsearch:elasticsearch")
 
     compileOnly("org.projectlombok:lombok")
 
