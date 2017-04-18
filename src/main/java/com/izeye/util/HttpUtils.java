@@ -60,7 +60,7 @@ public abstract class HttpUtils {
 			if (nameAndValue.length == 2) {
 				String name = nameAndValue[0];
 				String value = nameAndValue[1];
-				parameters.put(name, value);
+				parameters.put(name, UrlEncodingUtils.decode(value));
 			}
 		}
 		return parameters;
@@ -74,7 +74,7 @@ public abstract class HttpUtils {
 		for (Map.Entry<String, ?> parameter : parameters.entrySet()) {
 			sb.append(parameter.getKey());
 			sb.append(DELIMITER_PARAMETER_NAME_VALUE);
-			sb.append(parameter.getValue());
+			sb.append(UrlEncodingUtils.encode(parameter.getValue().toString()));
 			sb.append(DELIMITER_PARAMETER);
 		}
 		sb.deleteCharAt(sb.length() - 1);

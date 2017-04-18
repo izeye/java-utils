@@ -53,10 +53,16 @@ public class HttpUtilsTests {
 
 	@Test
 	public void testParseQueryString() {
-		assertThat(HttpUtils.parseQueryString("a=1")).hasSize(1).containsEntry("a", "1");
-		assertThat(HttpUtils.parseQueryString("a=1&b=2")).hasSize(2).containsEntry("a", "1").containsEntry("b", "2");
-		assertThat(HttpUtils.parseQueryString("a=1&b=")).hasSize(1).containsEntry("a", "1");
-		assertThat(HttpUtils.parseQueryString("a=1&b=2&c=")).hasSize(2).containsEntry("a", "1").containsEntry("b", "2");
+		assertThat(HttpUtils.parseQueryString("a=1"))
+				.hasSize(1).containsEntry("a", "1");
+		assertThat(HttpUtils.parseQueryString("a=1&b=2"))
+				.hasSize(2).containsEntry("a", "1").containsEntry("b", "2");
+		assertThat(HttpUtils.parseQueryString("a=1&b="))
+				.hasSize(1).containsEntry("a", "1");
+		assertThat(HttpUtils.parseQueryString("a=1&b=2&c="))
+				.hasSize(2).containsEntry("a", "1").containsEntry("b", "2");
+		assertThat(HttpUtils.parseQueryString("a=1%3A2&b=2&c="))
+				.hasSize(2).containsEntry("a", "1:2").containsEntry("b", "2");
 	}
 
 	@Test
@@ -64,9 +70,9 @@ public class HttpUtilsTests {
 		assertThat(HttpUtils.buildQueryString(Collections.singletonMap("a", "1"))).isEqualTo("a=1");
 
 		Map<String, Object> parameters = new LinkedHashMap<>();
-		parameters.put("a", 1);
+		parameters.put("a", "1:2");
 		parameters.put("b", 2);
-		assertThat(HttpUtils.buildQueryString(parameters)).isEqualTo("a=1&b=2");
+		assertThat(HttpUtils.buildQueryString(parameters)).isEqualTo("a=1%3A2&b=2");
 	}
 
 }
