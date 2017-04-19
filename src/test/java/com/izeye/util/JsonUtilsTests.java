@@ -16,6 +16,7 @@
 
 package com.izeye.util;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -43,6 +44,17 @@ public class JsonUtilsTests {
 
 	@Test
 	public void testToJsonWithMap() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", "Johnny");
+		map.put("age", 20);
+
+		String json = JsonUtils.toJson(map);
+
+		assertThat(json).isEqualTo("{\"name\":\"Johnny\",\"age\":20}");
+	}
+
+	@Test
+	public void testToJsonWithTreeMap() {
 		Map<String, Object> map = new TreeMap<>();
 		map.put("name", "Johnny");
 		map.put("age", 20);

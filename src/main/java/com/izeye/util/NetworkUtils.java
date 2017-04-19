@@ -28,6 +28,9 @@ import java.net.UnknownHostException;
  */
 public final class NetworkUtils {
 
+	private NetworkUtils() {
+	}
+
 	public static String getMacAddress() {
 		try {
 			InetAddress localHost = InetAddress.getLocalHost();
