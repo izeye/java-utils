@@ -64,6 +64,17 @@ public class JsonUtilsTests {
 		assertThat(json).isEqualTo("{\"age\":20,\"name\":\"Johnny\"}");
 	}
 
+	@Test
+	public void testToJsonLexicographicallyWithMap() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", "Johnny");
+		map.put("age", 20);
+
+		String json = JsonUtils.toJsonLexicographically(map);
+
+		assertThat(json).isEqualTo("{\"age\":20,\"name\":\"Johnny\"}");
+	}
+
 	@Data
 	@AllArgsConstructor
 	private static class Person {

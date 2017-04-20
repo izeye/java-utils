@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 /**
  * Utilities for JSON.
@@ -29,14 +30,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public final class JsonUtils {
 
 	private static final ObjectMapper MAPPER = new ObjectMapper();
+	private static final ObjectMapper LEXICOGRAPHICAL_MAPPER = new ObjectMapper();
+
+	static {
+		LEXICOGRAPHICAL_MAPPER.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
+	}
 
 	private JsonUtils() {
 	}
 
 	public static String toJson(Object object) {
+		return toJson(object, MAPPER);
+	}
+
+	public static String toJsonLexicographically(Object object) {
+		return toJson(object, LEXICOGRAPHICAL_MAPPER);
+	}
+
+	private static String toJson(Object object, ObjectMapper mapper) {
 		StringWriter writer = new StringWriter();
 		try {
-			MAPPER.writeValue(writer, object);
+			mapper.writeValue(writer, object);
 			return writer.toString();
 		}
 		catch (IOException ex) {
