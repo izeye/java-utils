@@ -35,10 +35,10 @@ public class ApacheReverseProxyUtilsTests {
 	public void getIpAddressInfoWhenNoXForwardedForReturnsItself() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR))
-				.thenReturn("1.2.3.4");
+				.thenReturn("client");
 		ApacheReverseProxyUtils.IpAddressInfo ipAddressInfo =
 				ApacheReverseProxyUtils.getIpAddressInfo(request);
-		assertThat(ipAddressInfo.getRemoteIpAddress()).isEqualTo("1.2.3.4");
+		assertThat(ipAddressInfo.getRemoteIpAddress()).isEqualTo("client");
 		assertThat(ipAddressInfo.getXForwardedFor()).isNull();
 	}
 
@@ -46,11 +46,11 @@ public class ApacheReverseProxyUtilsTests {
 	public void getIpAddressInfo() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR))
-				.thenReturn("1.2.3.4,5.6.7.8,9.10.11.12");
+				.thenReturn("client, proxy1, proxy2");
 		ApacheReverseProxyUtils.IpAddressInfo ipAddressInfo =
 				ApacheReverseProxyUtils.getIpAddressInfo(request);
-		assertThat(ipAddressInfo.getRemoteIpAddress()).isEqualTo("1.2.3.4");
-		assertThat(ipAddressInfo.getXForwardedFor()).isEqualTo("5.6.7.8,9.10.11.12");
+		assertThat(ipAddressInfo.getRemoteIpAddress()).isEqualTo("proxy2");
+		assertThat(ipAddressInfo.getXForwardedFor()).isEqualTo("client, proxy1");
 	}
 
 }

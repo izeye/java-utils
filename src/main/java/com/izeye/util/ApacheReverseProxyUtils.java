@@ -32,7 +32,7 @@ public abstract class ApacheReverseProxyUtils {
 	 */
 	public static final String HEADER_X_FORWARDED_FOR = "X-Forwarded-For";
 
-	private static final char DELIMITER_X_FORWARDED_FOR = ',';
+	private static final String DELIMITER_X_FORWARDED_FOR = ", ";
 
 	private ApacheReverseProxyUtils() {
 	}
@@ -40,10 +40,10 @@ public abstract class ApacheReverseProxyUtils {
 	public static IpAddressInfo getIpAddressInfo(HttpServletRequest request) {
 		IpAddressInfo ipAddressInfo = new IpAddressInfo();
 		String xForwardedFor = request.getHeader(HEADER_X_FORWARDED_FOR);
-		int index = xForwardedFor.indexOf(DELIMITER_X_FORWARDED_FOR);
+		int index = xForwardedFor.lastIndexOf(DELIMITER_X_FORWARDED_FOR);
 		if (index != -1) {
-			String remoteIpAddress = xForwardedFor.substring(0, index);
-			String originalXForwardedFor = xForwardedFor.substring(index + 1);
+			String originalXForwardedFor = xForwardedFor.substring(0, index);
+			String remoteIpAddress = xForwardedFor.substring(index + 2);
 			ipAddressInfo.setRemoteIpAddress(remoteIpAddress);
 			ipAddressInfo.setXForwardedFor(originalXForwardedFor);
 		}
