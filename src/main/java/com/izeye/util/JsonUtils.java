@@ -21,6 +21,8 @@ import java.io.StringWriter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.PathNotFoundException;
 
 /**
  * Utilities for JSON.
@@ -55,6 +57,15 @@ public final class JsonUtils {
 		}
 		catch (IOException ex) {
 			throw new RuntimeException(ex);
+		}
+	}
+
+	public static <T> T readPath(String json, String path, Class<T> clazz) {
+		try {
+			return JsonPath.parse(json).read(path, clazz);
+		}
+		catch (PathNotFoundException ex) {
+			return null;
 		}
 	}
 

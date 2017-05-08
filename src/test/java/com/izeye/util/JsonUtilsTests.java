@@ -75,6 +75,27 @@ public class JsonUtilsTests {
 		assertThat(json).isEqualTo("{\"age\":20,\"name\":\"Johnny\"}");
 	}
 
+	@Test
+	public void testReadPath() {
+		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
+		String path = "a1.b1.c1";
+		assertThat(JsonUtils.readPath(json, path, String.class)).isEqualTo("a1b1c1");
+	}
+
+	@Test
+	public void testReadPathMissingLeaf() {
+		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
+		String path = "a1.b1.c2";
+		assertThat(JsonUtils.readPath(json, path, String.class)).isNull();
+	}
+
+	@Test
+	public void testReadPathMissingIntermediate() {
+		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
+		String path = "a2.b1.c1";
+		assertThat(JsonUtils.readPath(json, path, String.class)).isNull();
+	}
+
 	@Data
 	@AllArgsConstructor
 	private static class Person {
