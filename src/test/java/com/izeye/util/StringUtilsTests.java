@@ -47,4 +47,13 @@ public class StringUtilsTests {
 		assertThat(replaced).isEqualTo(expected);
 	}
 
+	@Test
+	public void testGetFirstNotEmptyValue() {
+		assertThat(StringUtils.getFirstNotEmptyValue(null, null, null)).isNull();
+		assertThat(StringUtils.getFirstNotEmptyValue("1", null, null)).isEqualTo("1");
+		assertThat(StringUtils.getFirstNotEmptyValue(null, "2", null)).isEqualTo("2");
+		assertThat(StringUtils.getFirstNotEmptyValue(null, null, "3")).isEqualTo("3");
+		assertThat(StringUtils.getFirstNotEmptyValue("1", "2", "3")).isEqualTo("1");
+	}
+
 }

@@ -39,8 +39,17 @@ public abstract class StringUtils {
 			}
 			afterDelimiterIndex = target.indexOf(delimiter, beforeDelimiterIndex + 1);
 		}
-		return target.substring(0, beforeDelimiterIndex + 1) + replacement +
-				target.substring(afterDelimiterIndex);
+		return target.substring(0, beforeDelimiterIndex + 1) + replacement
+				+ target.substring(afterDelimiterIndex);
+	}
+
+	public static String getFirstNotEmptyValue(String... values) {
+		for (String value : values) {
+			if (value != null && !value.isEmpty()) {
+				return value;
+			}
+		}
+		return null;
 	}
 
 	/**
