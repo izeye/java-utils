@@ -108,9 +108,7 @@
         </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck">
             <property name="scope" value="public"/>
-        </module>
-        <module name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck">
-            <property name="scope" value="public"/>
+            <property name="ignoreNamePattern" value="thrown" />
         </module>
         <module name="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck" />
         <!-- Does this module work? It doesn't look like working to me. -->
