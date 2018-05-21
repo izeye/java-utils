@@ -16,6 +16,7 @@
 
 package com.izeye.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,10 +44,11 @@ public final class IOUtils {
 	 */
 	public static String toString(InputStream inputStream, Charset charset) {
 		try (StringWriter writer = new StringWriter();
-				InputStreamReader reader = new InputStreamReader(inputStream, charset)) {
+				InputStreamReader reader = new InputStreamReader(inputStream, charset);
+				BufferedReader bufferedReader = new BufferedReader(reader)) {
 			char[] chars = new char[DEFAULT_BUFFER_SIZE];
 			int readChars;
-			while ((readChars = reader.read(chars)) != EOF) {
+			while ((readChars = bufferedReader.read(chars)) != EOF) {
 				writer.write(chars, 0, readChars);
 			}
 			return writer.toString();
