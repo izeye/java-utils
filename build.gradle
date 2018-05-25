@@ -39,14 +39,16 @@ dependencies {
     compile("org.elasticsearch:elasticsearch:${elasticsearchVersion}")
 
     compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
     testCompileOnly("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0.2'
+    gradleVersion = '4.7'
 }
 
 tasks.withType(JavaCompile) {
