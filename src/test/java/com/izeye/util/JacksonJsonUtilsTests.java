@@ -27,17 +27,17 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link JsonUtils}.
+ * Tests for {@link JacksonJsonUtils}.
  *
  * @author Johnny Lim
  */
-public class JsonUtilsTests {
+public class JacksonJsonUtilsTests {
 
 	@Test
 	public void testToJson() {
 		Person person = new Person("Johnny", 20);
 
-		String json = JsonUtils.toJson(person);
+		String json = JacksonJsonUtils.toJson(person);
 
 		assertThat(json).isEqualTo("{\"name\":\"Johnny\",\"age\":20}");
 	}
@@ -48,7 +48,7 @@ public class JsonUtilsTests {
 		map.put("name", "Johnny");
 		map.put("age", 20);
 
-		String json = JsonUtils.toJson(map);
+		String json = JacksonJsonUtils.toJson(map);
 
 		assertThat(json).isEqualTo("{\"name\":\"Johnny\",\"age\":20}");
 	}
@@ -59,7 +59,7 @@ public class JsonUtilsTests {
 		map.put("name", "Johnny");
 		map.put("age", 20);
 
-		String json = JsonUtils.toJson(map);
+		String json = JacksonJsonUtils.toJson(map);
 
 		assertThat(json).isEqualTo("{\"age\":20,\"name\":\"Johnny\"}");
 	}
@@ -70,7 +70,7 @@ public class JsonUtilsTests {
 		map.put("name", "Johnny");
 		map.put("age", 20);
 
-		String json = JsonUtils.toJsonLexicographically(map);
+		String json = JacksonJsonUtils.toJsonLexicographically(map);
 
 		assertThat(json).isEqualTo("{\"age\":20,\"name\":\"Johnny\"}");
 	}
@@ -79,21 +79,21 @@ public class JsonUtilsTests {
 	public void testReadPath() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a1.b1.c1";
-		assertThat(JsonUtils.readPath(json, path, String.class)).isEqualTo("a1b1c1");
+		assertThat(JacksonJsonUtils.readPath(json, path, String.class)).isEqualTo("a1b1c1");
 	}
 
 	@Test
 	public void testReadPathMissingLeaf() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a1.b1.c2";
-		assertThat(JsonUtils.readPath(json, path, String.class)).isNull();
+		assertThat(JacksonJsonUtils.readPath(json, path, String.class)).isNull();
 	}
 
 	@Test
 	public void testReadPathMissingIntermediate() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a2.b1.c1";
-		assertThat(JsonUtils.readPath(json, path, String.class)).isNull();
+		assertThat(JacksonJsonUtils.readPath(json, path, String.class)).isNull();
 	}
 
 	@Data
