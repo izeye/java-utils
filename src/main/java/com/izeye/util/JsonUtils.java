@@ -83,6 +83,51 @@ public final class JsonUtils {
 		throw new UnsupportedOperationException("Unsupported class: " + o.getClass());
 	}
 
+	/**
+	 * Convert an object to JSON and collect to {@link StringBuilder}.
+	 *
+	 * This method supports only the following types:
+	 *
+	 * <ul>
+	 *   <li><code>Map</code></li>
+	 *   <li><code>Boolean</code></li>
+	 *   <li><code>Number</code></li>
+	 *   <li><code>String</code></li>
+	 * </ul>
+	 *
+	 * @param o object to convert JSON
+	 * @param collector {@link StringBuilder} to be collected into
+	 * @throws UnsupportedOperationException if the type of the object is an unlisted type.
+	 */
+	@SuppressWarnings("unchecked")
+	public static void toJson(Object o, StringBuilder collector) {
+		if (o == null) {
+			collector.append("null");
+		}
+		else if (o instanceof Boolean || o instanceof Number) {
+			collector.append(o);
+		}
+		else if (o instanceof String) {
+			collector.append('"').append(o).append('"').toString();
+		}
+		else if (o instanceof Map) {
+			Map<String, Object> map = (Map<String, Object>) o;
+			collector.append('{');
+			if (!map.isEmpty()) {
+				map.forEach((key, value) -> {
+					collector.append('"').append(key).append("\":");
+					toJson(value, collector);
+					collector.append(',');
+				});
+				collector.deleteCharAt(collector.length() - 1);
+			}
+			collector.append('}');
+		}
+		else {
+			throw new UnsupportedOperationException("Unsupported class: " + o.getClass());
+		}
+	}
+
 	private static String arrayToJson(Stream<Object> arrayStream) {
 		return arrayStream
 				.map((element) -> toJson(element))
