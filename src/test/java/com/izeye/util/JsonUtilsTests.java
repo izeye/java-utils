@@ -42,7 +42,7 @@ public class JsonUtilsTests {
 
 	@Test
 	public void toJsonStringBuilderWhenCustomClassShouldThrowException() {
-		assertThatThrownBy(() -> JsonUtils.toJson(new Person("Johnny", "Lim"), new StringBuilder()))
+		assertThatThrownBy(() -> JsonUtils.toJsonStringBuilder(new Person("Johnny", "Lim")))
 				.isInstanceOf(UnsupportedOperationException.class);
 	}
 
@@ -54,7 +54,7 @@ public class JsonUtilsTests {
 
 	@Test
 	public void toJsonStringBuilderWhenPrimitiveArrayShouldThrowException() {
-		assertThatThrownBy(() -> JsonUtils.toJson(new int[0], new StringBuilder()))
+		assertThatThrownBy(() -> JsonUtils.toJsonStringBuilder(new int[0]))
 				.isInstanceOf(UnsupportedOperationException.class);
 	}
 
@@ -169,9 +169,7 @@ public class JsonUtilsTests {
 	}
 
 	private void assertJsonStringBuilderAgainstJackson(Object o) {
-		StringBuilder collector = new StringBuilder();
-		JsonUtils.toJson(o, collector);
-		assertThat(collector.toString()).isEqualTo(JacksonJsonUtils.toJson(o));
+		assertThat(JsonUtils.toJsonStringBuilder(o)).isEqualTo(JacksonJsonUtils.toJson(o));
 	}
 
 	private static class Person {

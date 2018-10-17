@@ -84,7 +84,7 @@ public final class JsonUtils {
 	}
 
 	/**
-	 * Convert an object to JSON and collect to {@link StringBuilder}.
+	 * Convert an object to JSON.
 	 *
 	 * This method supports only the following types:
 	 *
@@ -96,21 +96,28 @@ public final class JsonUtils {
 	 * </ul>
 	 *
 	 * @param o object to convert JSON
-	 * @param collector {@link StringBuilder} to be collected into
+	 * @return JSON
 	 * @throws UnsupportedOperationException if the type of the object is an unlisted type.
 	 */
+	public static String toJsonStringBuilder(Object o) {
+		return toJson(o, new StringBuilder()).toString();
+	}
+
 	@SuppressWarnings("unchecked")
-	public static void toJson(Object o, StringBuilder collector) {
+	private static StringBuilder toJson(Object o, StringBuilder collector) {
 		if (o == null) {
-			collector.append("null");
+			return collector.append("null");
 		}
-		else if (o instanceof Boolean || o instanceof Number) {
-			collector.append(o);
+		if (o instanceof Boolean || o instanceof Number) {
+			return collector.append(o);
 		}
-		else if (o instanceof String) {
-			collector.append('"').append(o).append('"').toString();
+		if (o instanceof Number) {
+			return collector.append(o);
 		}
-		else if (o instanceof Map) {
+		if (o instanceof String) {
+			return collector.append('"').append(o).append('"');
+		}
+		if (o instanceof Map) {
 			Map<String, Object> map = (Map<String, Object>) o;
 			collector.append('{');
 			if (!map.isEmpty()) {
@@ -121,11 +128,9 @@ public final class JsonUtils {
 				});
 				collector.deleteCharAt(collector.length() - 1);
 			}
-			collector.append('}');
+			return collector.append('}');
 		}
-		else {
-			throw new UnsupportedOperationException("Unsupported class: " + o.getClass());
-		}
+		throw new UnsupportedOperationException("Unsupported class: " + o.getClass());
 	}
 
 	private static String arrayToJson(Stream<Object> arrayStream) {
