@@ -16,6 +16,13 @@
 
 package com.izeye.util;
 
+import java.util.Map;
+import java.util.TreeMap;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 /**
  * Utilities for URLs.
  *
@@ -29,6 +36,11 @@ public abstract class UrlUtils {
 	private static final String PARAMETER_DELIMITER = "&";
 	private static final String PARAMETER_NAME_VALUE_DELIMITER = "=";
 	private static final String FRAGMENT_START_CHAR = "#";
+
+	private static ObjectMapper mapper = new ObjectMapper();
+	static {
+		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+	}
 
 
 	private UrlUtils() {
@@ -68,6 +80,42 @@ public abstract class UrlUtils {
 	private static String encodeParameter(String name, String value) {
 		String encodedValue = UrlEncodingUtils.encode(value);
 		return name + PARAMETER_NAME_VALUE_DELIMITER + encodedValue;
+	}
+
+	public static void printComponents(String url) {
+		Map<String, Object> components = new TreeMap<>();
+		int anchorStartIndex = url.indexOf('#');
+		if (anchorStartIndex != -1) {
+			components.put("anchor", url.substring(anchorStartIndex + 1));
+			url = url.substring(0, anchorStartIndex);
+		}
+
+		int protocolEndIndex = url.indexOf("://");
+		components.put("protocol", url.substring(0, protocolEndIndex));
+		url = url.substring(protocolEndIndex + 3);
+
+		int domainEndIndex = url.indexOf('/');
+		components.put("domain", url.substring(0, domainEndIndex));
+		url = url.substring(domainEndIndex);
+
+		int parameterStartIndex = url.indexOf('?');
+		components.put("path", url.substring(0, parameterStartIndex));
+
+		Map<String, String> parameters = new TreeMap<>();
+		String encodedParameters = url.substring(parameterStartIndex + 1);
+		for (String parameter : encodedParameters.split("&")) {
+			String[] nameValuePair = parameter.split("=");
+			parameters.put(nameValuePair[0], UrlEncodingUtils.decode(nameValuePair[1]));
+		}
+		components.put("parameters", parameters);
+
+		try {
+			String json = mapper.writeValueAsString(components);
+			System.out.println(json);
+		}
+		catch (JsonProcessingException ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 
 }

@@ -56,4 +56,10 @@ public class UrlUtilsTests {
 				.isEqualTo("http://www.google.com?type=1&name=value#ref");
 	}
 
+	@Test
+	public void printComponents() {
+		String url = "https://www.google.com/path1/path2?parameter1=value1&parameter2=%EC%95%88%EB%85%95#myAnchor";
+		UrlUtils.printComponents(url);
+	}
+
 }
