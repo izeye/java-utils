@@ -1,17 +1,17 @@
 buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-        maven { url "http://repo.spring.io/libs-release" }
-        maven { url "http://repo.spring.io/libs-milestone" }
-        maven { url "http://repo.spring.io/snapshot" }
-        maven { url 'http://repo.spring.io/plugins-release' }
-    }
+	repositories {
+		mavenLocal()
+		jcenter()
+		maven { url "http://repo.spring.io/libs-release" }
+		maven { url "http://repo.spring.io/libs-milestone" }
+		maven { url "http://repo.spring.io/snapshot" }
+		maven { url 'http://repo.spring.io/plugins-release' }
+	}
 
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
 		classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:$springJavaFormatVersion")
-    }
+	}
 }
 
 apply plugin: 'java'
@@ -25,46 +25,46 @@ apply plugin: 'io.spring.javaformat'
 sourceCompatibility = 1.8
 
 repositories {
-    jcenter()
-    maven { url "http://repo.spring.io/libs-release" }
-    maven { url "http://repo.spring.io/libs-milestone" }
-    maven { url "http://repo.spring.io/snapshot" }
-    mavenLocal()
+	jcenter()
+	maven { url "http://repo.spring.io/libs-release" }
+	maven { url "http://repo.spring.io/libs-milestone" }
+	maven { url "http://repo.spring.io/snapshot" }
+	mavenLocal()
 }
 
 dependencies {
-    compile("ch.qos.logback:logback-classic")
-    compile("com.fasterxml.jackson.core:jackson-databind")
-    compile("com.jayway.jsonpath:json-path")
-    compile("com.google.guava:guava:$guavaVersion")
-    compile("javax.servlet:javax.servlet-api")
-    compile("org.elasticsearch:elasticsearch:${elasticsearchVersion}")
+	compile("ch.qos.logback:logback-classic")
+	compile("com.fasterxml.jackson.core:jackson-databind")
+	compile("com.jayway.jsonpath:json-path")
+	compile("com.google.guava:guava:$guavaVersion")
+	compile("javax.servlet:javax.servlet-api")
+	compile("org.elasticsearch:elasticsearch:${elasticsearchVersion}")
 
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
+	compileOnly("org.projectlombok:lombok")
+	annotationProcessor("org.projectlombok:lombok")
 
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
 
-    testCompileOnly("org.projectlombok:lombok")
-    testAnnotationProcessor("org.projectlombok:lombok")
-	
+	testCompileOnly("org.projectlombok:lombok")
+	testAnnotationProcessor("org.projectlombok:lombok")
+
 	checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:$springJavaFormatVersion")
 }
 
 wrapper {
-    gradleVersion = '5.3'
+	gradleVersion = '5.3'
 }
 
 tasks.withType(JavaCompile) {
-    options.compilerArgs << '-Xlint:unchecked'
+	options.compilerArgs << '-Xlint:unchecked'
 }
 
 checkstyle {
-    toolVersion = '8.18'
-    configProperties = [
-            'headerLocation': 'config/checkstyle/checkstyle-header.txt',
-            'suppressionsLocation': 'config/checkstyle/checkstyle-suppressions.xml'
-    ]
+	toolVersion = '8.18'
+	configProperties = [
+			'headerLocation'      : 'config/checkstyle/checkstyle-header.txt',
+			'suppressionsLocation': 'config/checkstyle/checkstyle-suppressions.xml'
+	]
 }
 
 gradle.taskGraph.whenReady {
