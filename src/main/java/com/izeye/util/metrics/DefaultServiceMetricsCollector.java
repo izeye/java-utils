@@ -52,7 +52,7 @@ public class DefaultServiceMetricsCollector implements ServiceMetricsCollector {
 		long timeoutCount = this.timeoutCount.sumThenReset();
 		long accumulatedProcessTimeInMillis = this.accumulatedProcessTimeInMillis
 				.sumThenReset();
-		long averageProcessTimeInMillis = requestCount == 0L ? 0L
+		long averageProcessTimeInMillis = (requestCount == 0L) ? 0L
 				: accumulatedProcessTimeInMillis / requestCount;
 		return new ServiceMetrics(requestCount, timeoutCount, averageProcessTimeInMillis);
 	}

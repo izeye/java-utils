@@ -46,7 +46,7 @@ public final class JsonUtils {
 	 * <li><code>String</code></li>
 	 * </ul>
 	 * @param o object to convert to JSON
-	 * @return JSON
+	 * @return converted JSON
 	 * @throws UnsupportedOperationException if the type of the object is an unlisted
 	 * type.
 	 */
@@ -97,7 +97,7 @@ public final class JsonUtils {
 	 * <li><code>String</code></li>
 	 * </ul>
 	 * @param o object to convert JSON
-	 * @return JSON
+	 * @return converted JSON
 	 * @throws UnsupportedOperationException if the type of the object is an unlisted
 	 * type.
 	 */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright \E20\d\d\Q the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,30 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.izeye.util.metrics;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-/**
- * Service metrics.
- *
- * @author Johnny Lim
- */
-@Data
-@AllArgsConstructor
-public class ServiceMetrics {
-
-	private final long requestCount;
-
-	private final long timeoutCount;
-
-	private final long averageProcessTimeInMillis;
-
-	public double getTimeoutRatioInPercent() {
-		return (this.requestCount == 0L) ? 0d
-				: this.timeoutCount * 100d / this.requestCount;
-	}
-
-}

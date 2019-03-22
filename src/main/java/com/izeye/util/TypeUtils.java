@@ -45,7 +45,7 @@ public abstract class TypeUtils {
 	}
 
 	public static int parseInt(String value, int defaultValue) {
-		return value == null ? defaultValue : Integer.parseInt(value);
+		return (value != null) ? Integer.parseInt(value) : defaultValue;
 	}
 
 }

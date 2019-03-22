@@ -16,9 +16,8 @@
 
 package com.izeye.util;
 
-import org.junit.Test;
-
 import com.izeye.util.StringUtils.FieldDescription;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

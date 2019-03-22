@@ -66,3 +66,11 @@ checkstyle {
             'suppressionsLocation': 'config/checkstyle/checkstyle-suppressions.xml'
     ]
 }
+
+gradle.taskGraph.whenReady {
+	plugins.withType(CheckstylePlugin) {
+		dependencies {
+			checkstyle files("$rootDir/config/checkstyle/src/main/resources")
+		}
+	}
+}
