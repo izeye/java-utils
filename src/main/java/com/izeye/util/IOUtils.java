@@ -52,7 +52,8 @@ public final class IOUtils {
 				writer.write(chars, 0, readChars);
 			}
 			return writer.toString();
-		} catch (IOException ex) {
+		}
+		catch (IOException ex) {
 			throw new UncheckedIOException(ex);
 		}
 	}
