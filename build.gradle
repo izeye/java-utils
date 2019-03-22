@@ -10,6 +10,7 @@ buildscript {
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+		classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:$springJavaFormatVersion")
     }
 }
 
@@ -19,6 +20,7 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'checkstyle'
+apply plugin: 'io.spring.javaformat'
 
 sourceCompatibility = 1.8
 
@@ -45,6 +47,8 @@ dependencies {
 
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
+	
+	checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:$springJavaFormatVersion")
 }
 
 wrapper {

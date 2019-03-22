@@ -174,4 +174,6 @@
     <module name="com.puppycrawl.tools.checkstyle.filters.SuppressionFilter">
         <property name="file" value="${suppressionsLocation}" />
     </module>
+
+	<module name="io.spring.javaformat.checkstyle.SpringChecks" />
 </module>
