@@ -37,7 +37,6 @@ public final class IOUtils {
 
 	/**
 	 * Create a {@code String} from {@link InputStream} with {@link Charset}.
-	 *
 	 * @param inputStream source {@link InputStream}
 	 * @param charset source charset
 	 * @return created {@code String}
@@ -60,7 +59,6 @@ public final class IOUtils {
 
 	/**
 	 * Create a {@code String} from {@link InputStream} with default {@link Charset}.
-	 *
 	 * @param inputStream source {@link InputStream}
 	 * @return created {@code String}
 	 */

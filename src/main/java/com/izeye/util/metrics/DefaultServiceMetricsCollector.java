@@ -28,7 +28,9 @@ public class DefaultServiceMetricsCollector implements ServiceMetricsCollector {
 	private final int timeoutInMillis;
 
 	private LongAdder requestCount = new LongAdder();
+
 	private LongAdder timeoutCount = new LongAdder();
+
 	private LongAdder accumulatedProcessTimeInMillis = new LongAdder();
 
 	public DefaultServiceMetricsCollector(int timeoutInMillis) {
@@ -48,9 +50,10 @@ public class DefaultServiceMetricsCollector implements ServiceMetricsCollector {
 	public ServiceMetrics getThenReset() {
 		long requestCount = this.requestCount.sumThenReset();
 		long timeoutCount = this.timeoutCount.sumThenReset();
-		long accumulatedProcessTimeInMillis = this.accumulatedProcessTimeInMillis.sumThenReset();
-		long averageProcessTimeInMillis =
-				requestCount == 0L ? 0L : accumulatedProcessTimeInMillis / requestCount;
+		long accumulatedProcessTimeInMillis = this.accumulatedProcessTimeInMillis
+				.sumThenReset();
+		long averageProcessTimeInMillis = requestCount == 0L ? 0L
+				: accumulatedProcessTimeInMillis / requestCount;
 		return new ServiceMetrics(requestCount, timeoutCount, averageProcessTimeInMillis);
 	}
 

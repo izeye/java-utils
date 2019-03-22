@@ -46,7 +46,8 @@ public class CollectionUtilsTests {
 
 		Set<String> whitelist = Collections.singleton("name");
 
-		Map<String, Object> filtered = CollectionUtils.filterWithWhitelist(map, whitelist);
+		Map<String, Object> filtered = CollectionUtils.filterWithWhitelist(map,
+				whitelist);
 
 		assertThat(filtered).containsEntry("name", "Johnny");
 	}
@@ -59,7 +60,8 @@ public class CollectionUtilsTests {
 
 		Set<String> whitelist = Collections.singleton("name");
 
-		Map<String, String> filtered = CollectionUtils.filterWithWhitelist(map, whitelist);
+		Map<String, String> filtered = CollectionUtils.filterWithWhitelist(map,
+				whitelist);
 
 		assertThat(filtered).containsEntry("name", "Johnny");
 	}

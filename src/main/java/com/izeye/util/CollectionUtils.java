@@ -38,7 +38,8 @@ public final class CollectionUtils {
 		return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(a)));
 	}
 
-	public static <T> Map<String, T> filterWithWhitelist(Map<String, T> map, Set<String> whitelist) {
+	public static <T> Map<String, T> filterWithWhitelist(Map<String, T> map,
+			Set<String> whitelist) {
 		Map<String, T> filtered = new HashMap<>();
 		for (Map.Entry<String, T> entry : map.entrySet()) {
 			String key = entry.getKey();

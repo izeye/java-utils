@@ -52,8 +52,8 @@ public class UrlUtilsTests {
 				.isEqualTo("http://www.google.com/?name=value#ref");
 		assertThat(UrlUtils.addParameter("http://www.google.com?type=1", "name", "value"))
 				.isEqualTo("http://www.google.com?type=1&name=value");
-		assertThat(UrlUtils.addParameter("http://www.google.com?type=1#ref", "name", "value"))
-				.isEqualTo("http://www.google.com?type=1&name=value#ref");
+		assertThat(UrlUtils.addParameter("http://www.google.com?type=1#ref", "name",
+				"value")).isEqualTo("http://www.google.com?type=1&name=value#ref");
 	}
 
 	@Test

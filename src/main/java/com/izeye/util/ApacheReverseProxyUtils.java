@@ -60,6 +60,7 @@ public abstract class ApacheReverseProxyUtils {
 	public static class IpAddressInfo {
 
 		private String remoteIpAddress;
+
 		private String xForwardedFor;
 
 	}

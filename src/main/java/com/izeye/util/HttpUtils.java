@@ -27,9 +27,11 @@ import java.util.Map;
 public abstract class HttpUtils {
 
 	private static final String DELIMITER_COOKIE = ";";
+
 	private static final char DELIMITER_COOKIE_KEY_VALUE = '=';
 
 	private static final String DELIMITER_PARAMETER = "&";
+
 	private static final String DELIMITER_PARAMETER_NAME_VALUE = "=";
 
 	private HttpUtils() {

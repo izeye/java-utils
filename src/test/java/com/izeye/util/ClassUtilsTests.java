@@ -36,7 +36,9 @@ public class ClassUtilsTests {
 
 	@Data
 	private static class Person {
+
 		private String name;
+
 	}
 
 }

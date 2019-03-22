@@ -38,17 +38,17 @@ public final class JsonUtils {
 	 * This method supports only basic types as follows:
 	 *
 	 * <ul>
-	 *   <li><code>Map</code></li>
-	 *   <li><code>Collection</code></li>
-	 *   <li><code>Object[]</code></li>
-	 *   <li><code>Boolean</code></li>
-	 *   <li><code>Number</code></li>
-	 *   <li><code>String</code></li>
+	 * <li><code>Map</code></li>
+	 * <li><code>Collection</code></li>
+	 * <li><code>Object[]</code></li>
+	 * <li><code>Boolean</code></li>
+	 * <li><code>Number</code></li>
+	 * <li><code>String</code></li>
 	 * </ul>
-	 *
 	 * @param o object to convert to JSON
 	 * @return JSON
-	 * @throws UnsupportedOperationException if the type of the object is an unlisted type.
+	 * @throws UnsupportedOperationException if the type of the object is an unlisted
+	 * type.
 	 */
 	@SuppressWarnings("unchecked")
 	public static String toJson(Object o) throws UnsupportedOperationException {
@@ -59,7 +59,8 @@ public final class JsonUtils {
 		if (o instanceof Map) {
 			Map<String, Object> map = (Map<String, Object>) o;
 			return map.entrySet().stream()
-					.map((entry) -> new StringBuilder().append('"').append(entry.getKey()).append("\":").append(toJson(entry.getValue())))
+					.map((entry) -> new StringBuilder().append('"').append(entry.getKey())
+							.append("\":").append(toJson(entry.getValue())))
 					.collect(Collectors.joining(",", "{", "}"));
 		}
 
@@ -76,7 +77,8 @@ public final class JsonUtils {
 		}
 
 		if (o instanceof String) {
-			String escaped = PATTERN_DOUBLE_QUOTES.matcher((String) o).replaceAll("\\\\\"");
+			String escaped = PATTERN_DOUBLE_QUOTES.matcher((String) o)
+					.replaceAll("\\\\\"");
 			return new StringBuilder().append('"').append(escaped).append('"').toString();
 		}
 
@@ -89,15 +91,15 @@ public final class JsonUtils {
 	 * This method supports only the following types:
 	 *
 	 * <ul>
-	 *   <li><code>Map</code></li>
-	 *   <li><code>Boolean</code></li>
-	 *   <li><code>Number</code></li>
-	 *   <li><code>String</code></li>
+	 * <li><code>Map</code></li>
+	 * <li><code>Boolean</code></li>
+	 * <li><code>Number</code></li>
+	 * <li><code>String</code></li>
 	 * </ul>
-	 *
 	 * @param o object to convert JSON
 	 * @return JSON
-	 * @throws UnsupportedOperationException if the type of the object is an unlisted type.
+	 * @throws UnsupportedOperationException if the type of the object is an unlisted
+	 * type.
 	 */
 	public static String toJsonStringBuilder(Object o) {
 		return toJson(o, new StringBuilder()).toString();
@@ -134,8 +136,7 @@ public final class JsonUtils {
 	}
 
 	private static String arrayToJson(Stream<Object> arrayStream) {
-		return arrayStream
-				.map((element) -> toJson(element))
+		return arrayStream.map((element) -> toJson(element))
 				.collect(Collectors.joining(",", "[", "]"));
 	}
 

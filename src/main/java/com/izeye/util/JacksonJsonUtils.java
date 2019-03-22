@@ -32,10 +32,12 @@ import com.jayway.jsonpath.PathNotFoundException;
 public final class JacksonJsonUtils {
 
 	private static final ObjectMapper MAPPER = new ObjectMapper();
+
 	private static final ObjectMapper LEXICOGRAPHICAL_MAPPER = new ObjectMapper();
 
 	static {
-		LEXICOGRAPHICAL_MAPPER.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
+		LEXICOGRAPHICAL_MAPPER.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS,
+				true);
 	}
 
 	private JacksonJsonUtils() {

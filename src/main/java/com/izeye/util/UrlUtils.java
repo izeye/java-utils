@@ -31,17 +31,21 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public abstract class UrlUtils {
 
 	private static final String PROTOCOL_DELIMITER = "://";
+
 	private static final String HTTP_PROTOCOL = "http";
+
 	private static final String QUERY_STRING_START_CHAR = "?";
+
 	private static final String PARAMETER_DELIMITER = "&";
+
 	private static final String PARAMETER_NAME_VALUE_DELIMITER = "=";
+
 	private static final String FRAGMENT_START_CHAR = "#";
 
 	private static ObjectMapper mapper = new ObjectMapper();
 	static {
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 	}
-
 
 	private UrlUtils() {
 	}

@@ -30,7 +30,6 @@ public final class URIUtils {
 
 	/**
 	 * Constructs a URL from a URI string.
-	 *
 	 * @param uri string to be parsed into a URI
 	 * @return a URL
 	 */

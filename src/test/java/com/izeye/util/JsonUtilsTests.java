@@ -42,8 +42,9 @@ public class JsonUtilsTests {
 
 	@Test
 	public void toJsonStringBuilderWhenCustomClassShouldThrowException() {
-		assertThatThrownBy(() -> JsonUtils.toJsonStringBuilder(new Person("Johnny", "Lim")))
-				.isInstanceOf(UnsupportedOperationException.class);
+		assertThatThrownBy(
+				() -> JsonUtils.toJsonStringBuilder(new Person("Johnny", "Lim")))
+						.isInstanceOf(UnsupportedOperationException.class);
 	}
 
 	@Test
@@ -136,7 +137,7 @@ public class JsonUtilsTests {
 		map.put("double", Double.valueOf(4.5d));
 		map.put("string", "Hello, world!");
 		// TODO: Intentionally ignore for StringBuilder version.
-//		map.put("string", "I said, \"Hello, world!\".");
+		// map.put("string", "I said, \"Hello, world!\".");
 		return map;
 	}
 
@@ -169,12 +170,14 @@ public class JsonUtilsTests {
 	}
 
 	private void assertJsonStringBuilderAgainstJackson(Object o) {
-		assertThat(JsonUtils.toJsonStringBuilder(o)).isEqualTo(JacksonJsonUtils.toJson(o));
+		assertThat(JsonUtils.toJsonStringBuilder(o))
+				.isEqualTo(JacksonJsonUtils.toJson(o));
 	}
 
 	private static class Person {
 
 		private final String firstName;
+
 		private final String lastName;
 
 		Person(String firstName, String lastName) {

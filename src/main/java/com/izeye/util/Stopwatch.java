@@ -24,6 +24,7 @@ package com.izeye.util;
 public class Stopwatch {
 
 	private long startTimeInMillis;
+
 	private long endTimeInMillis;
 
 	public void start() {

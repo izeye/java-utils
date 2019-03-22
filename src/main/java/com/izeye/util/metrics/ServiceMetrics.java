@@ -29,11 +29,14 @@ import lombok.Data;
 public class ServiceMetrics {
 
 	private final long requestCount;
+
 	private final long timeoutCount;
+
 	private final long averageProcessTimeInMillis;
 
 	public double getTimeoutRatioInPercent() {
-		return this.requestCount == 0L ? 0d : this.timeoutCount * 100d / this.requestCount;
+		return this.requestCount == 0L ? 0d
+				: this.timeoutCount * 100d / this.requestCount;
 	}
 
 }

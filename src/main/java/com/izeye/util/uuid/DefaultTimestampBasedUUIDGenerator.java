@@ -32,9 +32,13 @@ import com.google.common.primitives.Longs;
 public class DefaultTimestampBasedUUIDGenerator implements TimestampBasedUUIDGenerator {
 
 	private static final byte[] LOCAL_IP_ADDRESS;
+
 	private static final int IP_ADDRESS_SIZE = 4;
+
 	private static final int TIMESTAMP_SIZE = Long.BYTES;
+
 	private static final int COUNTER_SIZE = Integer.BYTES;
+
 	private static final int SIZE = IP_ADDRESS_SIZE + TIMESTAMP_SIZE + COUNTER_SIZE;
 
 	static {

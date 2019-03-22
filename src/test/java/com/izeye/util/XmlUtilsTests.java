@@ -59,7 +59,8 @@ public class XmlUtilsTests {
 
 		NodeList personNodeList = document.getElementsByTagName("person");
 		Element personElement = (Element) personNodeList.item(0);
-		assertThat(XmlUtils.getTextContent(personElement, "firstName")).isEqualTo("Johnny");
+		assertThat(XmlUtils.getTextContent(personElement, "firstName"))
+				.isEqualTo("Johnny");
 		assertThat(XmlUtils.getTextContent(personElement, "middleName")).isNull();
 	}
 
@@ -116,7 +117,8 @@ public class XmlUtilsTests {
 		XmlUtils.appendElementTextContentIfAbsent(personElement, map);
 		String xml = XmlUtils.document2Xml(document);
 		System.out.println(xml);
-		assertThat(xml).isEqualTo("<persons><person><firstName>John</firstName><lastName>Kim</lastName><age>20</age></person></persons>");
+		assertThat(xml).isEqualTo(
+				"<persons><person><firstName>John</firstName><lastName>Kim</lastName><age>20</age></person></persons>");
 	}
 
 	@Test

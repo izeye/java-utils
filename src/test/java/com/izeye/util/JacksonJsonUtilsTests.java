@@ -79,7 +79,8 @@ public class JacksonJsonUtilsTests {
 	public void testReadPath() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a1.b1.c1";
-		assertThat(JacksonJsonUtils.readPath(json, path, String.class)).isEqualTo("a1b1c1");
+		assertThat(JacksonJsonUtils.readPath(json, path, String.class))
+				.isEqualTo("a1b1c1");
 	}
 
 	@Test
@@ -101,6 +102,7 @@ public class JacksonJsonUtilsTests {
 	private static class Person {
 
 		private String name;
+
 		private int age;
 
 	}

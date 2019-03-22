@@ -39,24 +39,27 @@ public abstract class ElasticsearchUtils {
 	public static final int NATIVE_PORT = 9300;
 
 	private static final String CLUSTER_NAME = "cluster.name";
+
 	private static final String CLIENT_TRANSPORT_SNIFF = "client.transport.sniff";
 
 	private ElasticsearchUtils() {
 	}
 
-	public static String search(
-			String clusterName, String hostname, int port, String indexName, String query) {
+	public static String search(String clusterName, String hostname, int port,
+			String indexName, String query) {
 		Client client = createClient(clusterName, hostname, port);
-		SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setQuery(query);
+		SearchRequestBuilder requestBuilder = client.prepareSearch(indexName)
+				.setQuery(query);
 		SearchResponse response = requestBuilder.execute().actionGet();
 		return response.toString();
 	}
 
 	private static Client createClient(String clusterName, String hostname, int port) {
-		TransportClient client = TransportClient.builder().settings(settings(clusterName)).build();
+		TransportClient client = TransportClient.builder().settings(settings(clusterName))
+				.build();
 		try {
-			client.addTransportAddress(
-					new InetSocketTransportAddress(InetAddress.getByName(hostname), port));
+			client.addTransportAddress(new InetSocketTransportAddress(
+					InetAddress.getByName(hostname), port));
 			return client;
 		}
 		catch (UnknownHostException ex) {
@@ -65,8 +68,7 @@ public abstract class ElasticsearchUtils {
 	}
 
 	private static Settings settings(String clusterName) {
-		return Settings.settingsBuilder()
-				.put(CLUSTER_NAME, clusterName)
+		return Settings.settingsBuilder().put(CLUSTER_NAME, clusterName)
 				.put(CLIENT_TRANSPORT_SNIFF, true).build();
 	}
 

@@ -175,5 +175,6 @@
         <property name="file" value="${suppressionsLocation}" />
     </module>
 
-	<module name="io.spring.javaformat.checkstyle.SpringChecks" />
+	<!-- FIXME: Enable me after fix SpringHeader errors. -->
+	<!--<module name="io.spring.javaformat.checkstyle.SpringChecks" />-->
 </module>

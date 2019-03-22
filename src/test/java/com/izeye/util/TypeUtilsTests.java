@@ -43,7 +43,7 @@ public class TypeUtilsTests {
 	public void testBytes2ZeroLeadingBinaryString() {
 		String expected = "00000001" + "00000010" + "00000011";
 
-		byte[] bytes = {1, 2, 3};
+		byte[] bytes = { 1, 2, 3 };
 		assertThat(TypeUtils.bytes2ZeroLeadingBinaryString(bytes)).isEqualTo(expected);
 	}
 

@@ -31,7 +31,8 @@ public class IOUtilsTests {
 
 	@Test
 	public void testToString() {
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("sample.txt");
+		InputStream inputStream = getClass().getClassLoader()
+				.getResourceAsStream("sample.txt");
 		assertThat(IOUtils.toString(inputStream)).isEqualTo("This is a sample.");
 	}
 

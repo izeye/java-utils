@@ -28,14 +28,16 @@ public abstract class StringUtils {
 	private StringUtils() {
 	}
 
-	public static String replaceField(
-			String target, FieldDescription targetFieldDescription, String replacement) {
+	public static String replaceField(String target,
+			FieldDescription targetFieldDescription, String replacement) {
 		int beforeDelimiterIndex = 0;
 		int afterDelimiterIndex = 0;
-		for (FieldDescription fd = targetFieldDescription; fd != null; fd = fd.getSubFieldDescription()) {
+		for (FieldDescription fd = targetFieldDescription; fd != null; fd = fd
+				.getSubFieldDescription()) {
 			char delimiter = fd.getDelimiter();
 			for (int i = 0; i < fd.getIndex(); i++) {
-				beforeDelimiterIndex = target.indexOf(delimiter, beforeDelimiterIndex + 1);
+				beforeDelimiterIndex = target.indexOf(delimiter,
+						beforeDelimiterIndex + 1);
 			}
 			afterDelimiterIndex = target.indexOf(delimiter, beforeDelimiterIndex + 1);
 		}
@@ -59,7 +61,9 @@ public abstract class StringUtils {
 	public static class FieldDescription {
 
 		private char delimiter;
+
 		private int index;
+
 		private FieldDescription subFieldDescription;
 
 	}

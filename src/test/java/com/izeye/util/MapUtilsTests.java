@@ -44,8 +44,7 @@ public class MapUtilsTests {
 				.isEqualTo("Johnny");
 		assertThat(MapUtils.getValueByPath(map, String.class, "full_name", "last_name"))
 				.isEqualTo("Lim");
-		assertThat(MapUtils.getValueByPath(map, Integer.class, "age"))
-				.isEqualTo(35);
+		assertThat(MapUtils.getValueByPath(map, Integer.class, "age")).isEqualTo(35);
 	}
 
 	@Test

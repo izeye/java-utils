@@ -34,7 +34,8 @@ public final class NetworkUtils {
 	public static String getMacAddress() {
 		try {
 			InetAddress localHost = InetAddress.getLocalHost();
-			NetworkInterface networkInterface = NetworkInterface.getByInetAddress(localHost);
+			NetworkInterface networkInterface = NetworkInterface
+					.getByInetAddress(localHost);
 			byte[] hardwareAddress = networkInterface.getHardwareAddress();
 			StringBuilder sb = new StringBuilder();
 			for (byte b : hardwareAddress) {

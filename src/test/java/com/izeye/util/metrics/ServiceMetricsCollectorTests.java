@@ -30,8 +30,8 @@ public class ServiceMetricsCollectorTests {
 	@Test
 	public void test() {
 		int timeoutInMillis = 100;
-		ServiceMetricsCollector serviceMetricsCollector =
-				new DefaultServiceMetricsCollector(timeoutInMillis);
+		ServiceMetricsCollector serviceMetricsCollector = new DefaultServiceMetricsCollector(
+				timeoutInMillis);
 
 		serviceMetricsCollector.collect(50L);
 		serviceMetricsCollector.collect(99L);

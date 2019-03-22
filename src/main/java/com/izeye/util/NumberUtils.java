@@ -28,8 +28,8 @@ public final class NumberUtils {
 	private NumberUtils() {
 	}
 
-	private static final ThreadLocal<DecimalFormat> NUMBER_FORMAT =
-			ThreadLocal.withInitial(() -> new DecimalFormat("#,###"));
+	private static final ThreadLocal<DecimalFormat> NUMBER_FORMAT = ThreadLocal
+			.withInitial(() -> new DecimalFormat("#,###"));
 
 	public static String format(long value) {
 		return NUMBER_FORMAT.get().format(value);

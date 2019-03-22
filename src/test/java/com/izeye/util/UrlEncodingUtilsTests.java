@@ -31,7 +31,8 @@ public class UrlEncodingUtilsTests {
 	public void test() {
 		assertThat(UrlEncodingUtils.encode("=")).isEqualTo("%3D");
 		assertThat(UrlEncodingUtils.decode("%3D")).isEqualTo("=");
-		assertThat(UrlEncodingUtils.decode(UrlEncodingUtils.encode("테스트"))).isEqualTo("테스트");
+		assertThat(UrlEncodingUtils.decode(UrlEncodingUtils.encode("테스트")))
+				.isEqualTo("테스트");
 	}
 
 }

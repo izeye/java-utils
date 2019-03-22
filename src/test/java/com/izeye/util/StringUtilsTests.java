@@ -43,7 +43,8 @@ public class StringUtilsTests {
 		subFieldDescription.setIndex(2);
 		targetFieldDescription.setSubFieldDescription(subFieldDescription);
 
-		String replaced = StringUtils.replaceField(target, targetFieldDescription, replacement);
+		String replaced = StringUtils.replaceField(target, targetFieldDescription,
+				replacement);
 		assertThat(replaced).isEqualTo(expected);
 	}
 

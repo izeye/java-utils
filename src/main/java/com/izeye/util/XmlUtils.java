@@ -51,21 +51,19 @@ public abstract class XmlUtils {
 
 	private static final String DEFAULT_CHARSET = "UTF-8";
 
-	private static final ThreadLocal<DocumentBuilderFactory> DOCUMENT_BUILDER_FACTORY =
-			new ThreadLocal<DocumentBuilderFactory>() {
-				@Override
-				protected DocumentBuilderFactory initialValue() {
-					return DocumentBuilderFactory.newInstance();
-				}
-			};
+	private static final ThreadLocal<DocumentBuilderFactory> DOCUMENT_BUILDER_FACTORY = new ThreadLocal<DocumentBuilderFactory>() {
+		@Override
+		protected DocumentBuilderFactory initialValue() {
+			return DocumentBuilderFactory.newInstance();
+		}
+	};
 
-	private static final ThreadLocal<TransformerFactory> TRANSFORMER_FACTORY =
-			new ThreadLocal<TransformerFactory>() {
-				@Override
-				protected TransformerFactory initialValue() {
-					return TransformerFactory.newInstance();
-				}
-			};
+	private static final ThreadLocal<TransformerFactory> TRANSFORMER_FACTORY = new ThreadLocal<TransformerFactory>() {
+		@Override
+		protected TransformerFactory initialValue() {
+			return TransformerFactory.newInstance();
+		}
+	};
 
 	private XmlUtils() {
 	}
@@ -95,7 +93,8 @@ public abstract class XmlUtils {
 		return writer.toString();
 	}
 
-	public static void writeDocumentToOutputStream(Document document, OutputStream outputStream) {
+	public static void writeDocumentToOutputStream(Document document,
+			OutputStream outputStream) {
 		writeDocumentToStreamResult(document, new StreamResult(outputStream));
 	}
 
@@ -121,7 +120,8 @@ public abstract class XmlUtils {
 		return appendElementTextContent(parent, name, null);
 	}
 
-	public static Element appendElementTextContent(Node parent, String name, String textContent) {
+	public static Element appendElementTextContent(Node parent, String name,
+			String textContent) {
 		Document ownerDocument = getOwnerDocument(parent);
 		Element element = ownerDocument.createElement(name);
 		if (textContent != null) {
@@ -150,7 +150,8 @@ public abstract class XmlUtils {
 		return childElementNames;
 	}
 
-	public static void appendElementTextContentIfAbsent(Node parent, Map<String, Object> map) {
+	public static void appendElementTextContentIfAbsent(Node parent,
+			Map<String, Object> map) {
 		Set<String> childElementNames = getChildElementNames(parent);
 		for (Map.Entry<String, Object> entry : map.entrySet()) {
 			String key = entry.getKey();
@@ -177,7 +178,8 @@ public abstract class XmlUtils {
 		return imported;
 	}
 
-	private static void writeDocumentToStreamResult(Document document, StreamResult outputTarget) {
+	private static void writeDocumentToStreamResult(Document document,
+			StreamResult outputTarget) {
 		try {
 			Transformer transformer = TRANSFORMER_FACTORY.get().newTransformer();
 			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
