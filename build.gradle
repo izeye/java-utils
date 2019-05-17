@@ -52,7 +52,7 @@ dependencies {
 }
 
 wrapper {
-	gradleVersion = '5.3'
+	gradleVersion = '5.4.1'
 }
 
 tasks.withType(JavaCompile) {
