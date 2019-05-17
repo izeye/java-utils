@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.izeye.util;
+package com.izeye.util.elasticsearch;
 
 import org.junit.Ignore;
 import org.junit.Test;

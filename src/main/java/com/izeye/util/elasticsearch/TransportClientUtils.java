@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.izeye.util;
+package com.izeye.util.elasticsearch;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
