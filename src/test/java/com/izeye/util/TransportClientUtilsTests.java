@@ -20,11 +20,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Tests for {@link ElasticsearchUtils}.
+ * Tests for {@link TransportClientUtils}.
  *
  * @author Johnny Lim
  */
-public class ElasticsearchUtilsTests {
+public class TransportClientUtilsTests {
 
 	// To prepare this test, do as follows:
 	// curl -XPOST localhost:9200/persons/persons?pretty -d '{firstName: "Johnny",
@@ -37,20 +37,20 @@ public class ElasticsearchUtilsTests {
 		String clusterName = "elasticsearch";
 		String hostname = "localhost";
 		String indexName = "persons";
-		int port = ElasticsearchUtils.NATIVE_PORT;
+		int port = TransportClientUtils.NATIVE_PORT;
 
 		String query = "{query: {match_all: {}}}";
-		String response = ElasticsearchUtils.search(clusterName, hostname, port,
+		String response = TransportClientUtils.search(clusterName, hostname, port,
 				indexName, query);
 		System.out.println(response);
 
 		query = "{query: {term: {age: 20}}}";
-		response = ElasticsearchUtils.search(clusterName, hostname, port, indexName,
+		response = TransportClientUtils.search(clusterName, hostname, port, indexName,
 				query);
 		System.out.println(response);
 
 		query = "{query: {match: {firstName: \"Johnny\"}}}";
-		response = ElasticsearchUtils.search(clusterName, hostname, port, indexName,
+		response = TransportClientUtils.search(clusterName, hostname, port, indexName,
 				query);
 		System.out.println(response);
 	}

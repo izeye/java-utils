@@ -27,11 +27,11 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
 /**
- * Utilities for Elasticsearch.
+ * Utilities for Elasticsearch {@link TransportClient}.
  *
  * @author Johnny Lim
  */
-public abstract class ElasticsearchUtils {
+public final class TransportClientUtils {
 
 	/**
 	 * Elasticsearch default native port.
@@ -41,9 +41,6 @@ public abstract class ElasticsearchUtils {
 	private static final String CLUSTER_NAME = "cluster.name";
 
 	private static final String CLIENT_TRANSPORT_SNIFF = "client.transport.sniff";
-
-	private ElasticsearchUtils() {
-	}
 
 	public static String search(String clusterName, String hostname, int port,
 			String indexName, String query) {
@@ -70,6 +67,9 @@ public abstract class ElasticsearchUtils {
 	private static Settings settings(String clusterName) {
 		return Settings.settingsBuilder().put(CLUSTER_NAME, clusterName)
 				.put(CLIENT_TRANSPORT_SNIFF, true).build();
+	}
+
+	private TransportClientUtils() {
 	}
 
 }
