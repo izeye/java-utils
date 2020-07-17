@@ -16,7 +16,7 @@
 
 package com.izeye.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class NumberUtilsTests {
+class NumberUtilsTests {
 
 	@Test
-	public void testFormat() {
+	void testFormat() {
 		assertThat(NumberUtils.format(100)).isEqualTo("100");
 		assertThat(NumberUtils.format(1000)).isEqualTo("1,000");
 		assertThat(NumberUtils.format(10000)).isEqualTo("10,000");

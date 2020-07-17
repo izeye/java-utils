@@ -18,17 +18,17 @@ package com.izeye.util;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link Stopwatch}.
  *
  * @author Johnny Lim
  */
-public class StopwatchTests {
+class StopwatchTests {
 
 	@Test
-	public void test() throws InterruptedException {
+	void test() throws InterruptedException {
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.start();
 		TimeUnit.MILLISECONDS.sleep(100);

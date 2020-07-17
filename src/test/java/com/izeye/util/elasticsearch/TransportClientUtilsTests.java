@@ -16,24 +16,24 @@
 
 package com.izeye.util.elasticsearch;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link TransportClientUtils}.
  *
  * @author Johnny Lim
  */
-public class TransportClientUtilsTests {
+class TransportClientUtilsTests {
 
 	// To prepare this test, do as follows:
 	// curl -XPOST localhost:9200/persons/persons?pretty -d '{firstName: "Johnny",
 	// lastName: "Lim", age: 20}'
 	// curl -XPOST localhost:9200/persons/persons?pretty -d '{firstName: "John", lastName:
 	// "Kim", age: 30}'
-	@Ignore
+	@Disabled
 	@Test
-	public void testSearch() {
+	void testSearch() {
 		String clusterName = "elasticsearch";
 		String hostname = "localhost";
 		String indexName = "persons";

@@ -18,7 +18,7 @@ package com.izeye.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.mock;
@@ -29,10 +29,10 @@ import static org.mockito.BDDMockito.when;
  *
  * @author Johnny Lim
  */
-public class ApacheReverseProxyUtilsTests {
+class ApacheReverseProxyUtilsTests {
 
 	@Test
-	public void getIpAddressInfoWhenNoXForwardedForReturnsItself() {
+	void getIpAddressInfoWhenNoXForwardedForReturnsItself() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR))
 				.thenReturn("client");
@@ -43,7 +43,7 @@ public class ApacheReverseProxyUtilsTests {
 	}
 
 	@Test
-	public void getIpAddressInfo() {
+	void getIpAddressInfo() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR))
 				.thenReturn("client, proxy1, proxy2");

@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,10 +29,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class HttpUtilsTests {
+class HttpUtilsTests {
 
 	@Test
-	public void testParseCookieHeaderValue() {
+	void testParseCookieHeaderValue() {
 		String cookieHeaderValue = "a=b; c=d; e=; f=g==";
 		Map<String, String> cookies = HttpUtils.parseCookieHeaderValue(cookieHeaderValue);
 		assertThat(cookies.size()).isEqualTo(4);
@@ -43,7 +43,7 @@ public class HttpUtilsTests {
 	}
 
 	@Test
-	public void testExtractCookieValue() {
+	void testExtractCookieValue() {
 		String cookieHeaderValue = "a=b; c=d; e=; f=g==";
 		assertThat(HttpUtils.extractCookieValue(cookieHeaderValue, "a")).isEqualTo("b");
 		assertThat(HttpUtils.extractCookieValue(cookieHeaderValue, "c")).isEqualTo("d");
@@ -52,7 +52,7 @@ public class HttpUtilsTests {
 	}
 
 	@Test
-	public void testParseQueryString() {
+	void testParseQueryString() {
 		assertThat(HttpUtils.parseQueryString("a=1")).hasSize(1).containsEntry("a", "1");
 		assertThat(HttpUtils.parseQueryString("a=1&b=2")).hasSize(2)
 				.containsEntry("a", "1").containsEntry("b", "2");
@@ -65,7 +65,7 @@ public class HttpUtilsTests {
 	}
 
 	@Test
-	public void testBuildQueryString() {
+	void testBuildQueryString() {
 		assertThat(HttpUtils.buildQueryString(Collections.singletonMap("a", "1")))
 				.isEqualTo("a=1");
 

@@ -16,7 +16,7 @@
 
 package com.izeye.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class TypeUtilsTests {
+class TypeUtilsTests {
 
 	@Test
-	public void testByte2ZeroLeadingBinaryString() {
+	void testByte2ZeroLeadingBinaryString() {
 		byte b = 1;
 		assertThat(TypeUtils.byte2ZeroLeadingBinaryString(b)).isEqualTo("00000001");
 
@@ -40,7 +40,7 @@ public class TypeUtilsTests {
 	}
 
 	@Test
-	public void testBytes2ZeroLeadingBinaryString() {
+	void testBytes2ZeroLeadingBinaryString() {
 		String expected = "00000001" + "00000010" + "00000011";
 
 		byte[] bytes = { 1, 2, 3 };
@@ -48,7 +48,7 @@ public class TypeUtilsTests {
 	}
 
 	@Test
-	public void testParseInt() {
+	void testParseInt() {
 		assertThat(TypeUtils.parseInt(null, 1)).isEqualTo(1);
 		assertThat(TypeUtils.parseInt("2", 1)).isEqualTo(2);
 	}

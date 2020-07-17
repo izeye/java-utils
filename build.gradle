@@ -51,6 +51,10 @@ dependencies {
 	checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:$springJavaFormatVersion")
 }
 
+test {
+	useJUnitPlatform()
+}
+
 wrapper {
 	gradleVersion = '6.5.1'
 }

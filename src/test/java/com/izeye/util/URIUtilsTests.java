@@ -18,7 +18,7 @@ package com.izeye.util;
 
 import java.net.URL;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,10 +27,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class URIUtilsTests {
+class URIUtilsTests {
 
 	@Test
-	public void toURL() {
+	void toURL() {
 		URL url = URIUtils.toURL("https://www.google.com/");
 		assertThat(url.getProtocol()).isEqualTo("https");
 		assertThat(url.getHost()).isEqualTo("www.google.com");

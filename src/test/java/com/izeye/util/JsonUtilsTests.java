@@ -22,7 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -32,55 +32,55 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  *
  * @author Johnny Lim
  */
-public class JsonUtilsTests {
+class JsonUtilsTests {
 
 	@Test
-	public void toJsonWhenCustomClassShouldThrowException() {
+	void toJsonWhenCustomClassShouldThrowException() {
 		assertThatThrownBy(() -> JsonUtils.toJson(new Person("Johnny", "Lim")))
 				.isInstanceOf(UnsupportedOperationException.class);
 	}
 
 	@Test
-	public void toJsonStringBuilderWhenCustomClassShouldThrowException() {
+	void toJsonStringBuilderWhenCustomClassShouldThrowException() {
 		assertThatThrownBy(
 				() -> JsonUtils.toJsonStringBuilder(new Person("Johnny", "Lim")))
 						.isInstanceOf(UnsupportedOperationException.class);
 	}
 
 	@Test
-	public void toJsonWhenPrimitiveArrayShouldThrowException() {
+	void toJsonWhenPrimitiveArrayShouldThrowException() {
 		assertThatThrownBy(() -> JsonUtils.toJson(new int[0]))
 				.isInstanceOf(UnsupportedOperationException.class);
 	}
 
 	@Test
-	public void toJsonStringBuilderWhenPrimitiveArrayShouldThrowException() {
+	void toJsonStringBuilderWhenPrimitiveArrayShouldThrowException() {
 		assertThatThrownBy(() -> JsonUtils.toJsonStringBuilder(new int[0]))
 				.isInstanceOf(UnsupportedOperationException.class);
 	}
 
 	@Test
-	public void toJsonWhenEmptyMap() {
+	void toJsonWhenEmptyMap() {
 		assertAgainstJackson(Collections.emptyMap());
 	}
 
 	@Test
-	public void toJsonStringBuilderWhenEmptyMap() {
+	void toJsonStringBuilderWhenEmptyMap() {
 		assertJsonStringBuilderAgainstJackson(Collections.emptyMap());
 	}
 
 	@Test
-	public void toJsonWhenMap() {
+	void toJsonWhenMap() {
 		assertAgainstJackson(createTestMap());
 	}
 
 	@Test
-	public void toJsonStringBuilderWhenMap() {
+	void toJsonStringBuilderWhenMap() {
 		assertJsonStringBuilderAgainstJackson(createTestMap());
 	}
 
 	@Test
-	public void toJsonWhenMapHasNestedMapAndList() {
+	void toJsonWhenMapHasNestedMapAndList() {
 		Map<String, Object> map = new LinkedHashMap<>();
 		map.put("boolean", Boolean.TRUE);
 		map.put("nestedMap", createTestMap());
@@ -89,17 +89,17 @@ public class JsonUtilsTests {
 	}
 
 	@Test
-	public void toJsonWhenEmptyList() {
+	void toJsonWhenEmptyList() {
 		assertAgainstJackson(Collections.emptyList());
 	}
 
 	@Test
-	public void toJsonWhenList() {
+	void toJsonWhenList() {
 		assertAgainstJackson(createTestList());
 	}
 
 	@Test
-	public void toJsonWhenListHasNestedMapAndList() {
+	void toJsonWhenListHasNestedMapAndList() {
 		List<Object> list = new ArrayList<>();
 		list.add(Boolean.TRUE);
 		list.add(createTestMap());
@@ -108,17 +108,17 @@ public class JsonUtilsTests {
 	}
 
 	@Test
-	public void toJsonWhenEmptyArray() {
+	void toJsonWhenEmptyArray() {
 		assertAgainstJackson(new Object[0]);
 	}
 
 	@Test
-	public void toJsonWhenArray() {
+	void toJsonWhenArray() {
 		assertAgainstJackson(createTestArray());
 	}
 
 	@Test
-	public void toJsonWhenArrayHasNestedMapListAndArray() {
+	void toJsonWhenArrayHasNestedMapListAndArray() {
 		Object[] array = new Object[4];
 		array[0] = Boolean.TRUE;
 		array[1] = createTestMap();

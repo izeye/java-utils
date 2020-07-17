@@ -16,7 +16,7 @@
 
 package com.izeye.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class ExceptionUtilsTests {
+class ExceptionUtilsTests {
 
 	@Test
-	public void testHasCause() {
+	void testHasCause() {
 		RuntimeException ex = new RuntimeException(new IllegalArgumentException());
 		assertThat(ExceptionUtils.hasCause(ex, IllegalArgumentException.class)).isTrue();
 		assertThat(ExceptionUtils.hasCause(ex, IllegalStateException.class)).isFalse();

@@ -19,17 +19,17 @@ package com.izeye.util;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link ListUtils}.
  *
  * @author Johnny Lim
  */
-public class ListUtilsTests {
+class ListUtilsTests {
 
 	@Test
-	public void testSelectByHashCode() throws InterruptedException {
+	void testSelectByHashCode() throws InterruptedException {
 		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
 		for (int i = 0; i < 10; i++) {
 			Integer selected = ListUtils.selectByHashCode(list, i);

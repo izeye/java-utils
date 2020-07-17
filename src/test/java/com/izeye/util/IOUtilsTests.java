@@ -18,7 +18,7 @@ package com.izeye.util;
 
 import java.io.InputStream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,10 +27,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class IOUtilsTests {
+class IOUtilsTests {
 
 	@Test
-	public void testToString() {
+	void testToString() {
 		InputStream inputStream = getClass().getClassLoader()
 				.getResourceAsStream("sample.txt");
 		assertThat(IOUtils.toString(inputStream)).isEqualTo("This is a sample.");

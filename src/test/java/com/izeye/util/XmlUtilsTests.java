@@ -21,7 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -33,19 +33,19 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class XmlUtilsTests {
+class XmlUtilsTests {
 
 	private String xml = "<person><id>1</id><name><firstName>Johnny</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></person>";
 
 	@Test
-	public void testDocument2Xml() throws UnsupportedEncodingException {
+	void testDocument2Xml() throws UnsupportedEncodingException {
 		Document document = XmlUtils.xml2Document(this.xml);
 
 		assertThat(XmlUtils.document2Xml(document)).isEqualTo(this.xml);
 	}
 
 	@Test
-	public void testWriteDocumentToOutputStream() throws UnsupportedEncodingException {
+	void testWriteDocumentToOutputStream() throws UnsupportedEncodingException {
 		Document document = XmlUtils.xml2Document(this.xml);
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -54,7 +54,7 @@ public class XmlUtilsTests {
 	}
 
 	@Test
-	public void testGetTextContent() {
+	void testGetTextContent() {
 		Document document = XmlUtils.xml2Document(this.xml);
 
 		NodeList personNodeList = document.getElementsByTagName("person");
@@ -65,7 +65,7 @@ public class XmlUtilsTests {
 	}
 
 	@Test
-	public void testCreateDocument() {
+	void testCreateDocument() {
 		Document firstDocument = XmlUtils.createDocument();
 		Element rootElement = XmlUtils.appendElement(firstDocument, "root");
 		XmlUtils.appendElementTextContent(rootElement, "child", "This is a child.");
@@ -77,7 +77,7 @@ public class XmlUtilsTests {
 	}
 
 	@Test
-	public void testAppendElementTextContentWithMap() {
+	void testAppendElementTextContentWithMap() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("firstName", "Johnny");
 		map.put("lastName", "Lim");
@@ -91,7 +91,7 @@ public class XmlUtilsTests {
 	}
 
 	@Test
-	public void testGetChildElementNames() {
+	void testGetChildElementNames() {
 		Document document = XmlUtils.createDocument();
 		Element personsElement = XmlUtils.appendElement(document, "persons");
 		Element personElement = XmlUtils.appendElement(personsElement, "person");
@@ -102,7 +102,7 @@ public class XmlUtilsTests {
 	}
 
 	@Test
-	public void testAppendElementTextContentIfAbsentWithMap() {
+	void testAppendElementTextContentIfAbsentWithMap() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("firstName", "Johnny");
 		map.put("lastName", "Lim");
@@ -122,7 +122,7 @@ public class XmlUtilsTests {
 	}
 
 	@Test
-	public void testXml2DocumentWithEmoji() {
+	void testXml2DocumentWithEmoji() {
 		String xml = "<person><id>1</id><name><firstName>Johnny🍎</firstName><lastName>Lim</lastName></name><age>20</age><favoriteFruits><favoriteFruits>apple</favoriteFruits><favoriteFruits>banana</favoriteFruits></favoriteFruits><createdTime>1472769728985</createdTime></person>";
 		Document document = XmlUtils.xml2Document(xml);
 

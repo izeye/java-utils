@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,16 +30,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class CollectionUtilsTests {
+class CollectionUtilsTests {
 
 	@Test
-	public void testAsUnmodifiableSet() {
+	void testAsUnmodifiableSet() {
 		Set<String> set = CollectionUtils.asUnmodifiableSet("aa", "bb");
 		assertThat(set).containsExactlyInAnyOrder("bb", "aa");
 	}
 
 	@Test
-	public void testFilterWithWhitelist() {
+	void testFilterWithWhitelist() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("name", "Johnny");
 		map.put("age", 20);
@@ -53,7 +53,7 @@ public class CollectionUtilsTests {
 	}
 
 	@Test
-	public void testFilterWithWhitelistMapStringString() {
+	void testFilterWithWhitelistMapStringString() {
 		Map<String, String> map = new HashMap<>();
 		map.put("name", "Johnny");
 		map.put("age", "20");

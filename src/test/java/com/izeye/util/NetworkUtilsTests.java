@@ -16,19 +16,19 @@
 
 package com.izeye.util;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link NetworkUtils}.
  *
  * @author Johnny Lim
  */
-public class NetworkUtilsTests {
+class NetworkUtilsTests {
 
 	@Test
-	@Ignore // FIXME: networkInterface.getHardwareAddress() returns null.
-	public void testGetMacAddress() {
+	@Disabled // FIXME: networkInterface.getHardwareAddress() returns null.
+	void testGetMacAddress() {
 		System.out.println(NetworkUtils.getMacAddress());
 	}
 

@@ -17,7 +17,7 @@
 package com.izeye.util;
 
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class ClassUtilsTests {
+class ClassUtilsTests {
 
 	@Test
 	public void testCreateInstance() {

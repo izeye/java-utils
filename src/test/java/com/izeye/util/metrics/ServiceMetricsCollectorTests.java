@@ -16,7 +16,7 @@
 
 package com.izeye.util.metrics;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class ServiceMetricsCollectorTests {
+class ServiceMetricsCollectorTests {
 
 	@Test
-	public void test() {
+	void test() {
 		int timeoutInMillis = 100;
 		ServiceMetricsCollector serviceMetricsCollector = new DefaultServiceMetricsCollector(
 				timeoutInMillis);

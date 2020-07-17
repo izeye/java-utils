@@ -16,7 +16,7 @@
 
 package com.izeye.util.uuid;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,12 +25,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class DefaultTimestampBasedUUIDGeneratorTests {
+class DefaultTimestampBasedUUIDGeneratorTests {
 
 	private TimestampBasedUUIDGenerator uuidGenerator = new DefaultTimestampBasedUUIDGenerator();
 
 	@Test
-	public void testGenerate() {
+	void testGenerate() {
 		String uuid = this.uuidGenerator.generate(System.currentTimeMillis());
 		System.out.println(uuid);
 		assertThat(uuid).hasSize(24);

@@ -22,7 +22,7 @@ import java.util.TreeMap;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,10 +31,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class JacksonJsonUtilsTests {
+class JacksonJsonUtilsTests {
 
 	@Test
-	public void testToJson() {
+	void testToJson() {
 		Person person = new Person("Johnny", 20);
 
 		String json = JacksonJsonUtils.toJson(person);
@@ -43,7 +43,7 @@ public class JacksonJsonUtilsTests {
 	}
 
 	@Test
-	public void testToJsonWithMap() {
+	void testToJsonWithMap() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("name", "Johnny");
 		map.put("age", 20);
@@ -54,7 +54,7 @@ public class JacksonJsonUtilsTests {
 	}
 
 	@Test
-	public void testToJsonWithTreeMap() {
+	void testToJsonWithTreeMap() {
 		Map<String, Object> map = new TreeMap<>();
 		map.put("name", "Johnny");
 		map.put("age", 20);
@@ -65,7 +65,7 @@ public class JacksonJsonUtilsTests {
 	}
 
 	@Test
-	public void testToJsonLexicographicallyWithMap() {
+	void testToJsonLexicographicallyWithMap() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("name", "Johnny");
 		map.put("age", 20);
@@ -76,7 +76,7 @@ public class JacksonJsonUtilsTests {
 	}
 
 	@Test
-	public void testReadPath() {
+	void testReadPath() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a1.b1.c1";
 		assertThat(JacksonJsonUtils.readPath(json, path, String.class))
@@ -84,14 +84,14 @@ public class JacksonJsonUtilsTests {
 	}
 
 	@Test
-	public void testReadPathMissingLeaf() {
+	void testReadPathMissingLeaf() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a1.b1.c2";
 		assertThat(JacksonJsonUtils.readPath(json, path, String.class)).isNull();
 	}
 
 	@Test
-	public void testReadPathMissingIntermediate() {
+	void testReadPathMissingIntermediate() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a2.b1.c1";
 		assertThat(JacksonJsonUtils.readPath(json, path, String.class)).isNull();

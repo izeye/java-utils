@@ -16,7 +16,7 @@
 
 package com.izeye.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class UrlEncodingUtilsTests {
+class UrlEncodingUtilsTests {
 
 	@Test
-	public void test() {
+	void test() {
 		assertThat(UrlEncodingUtils.encode("=")).isEqualTo("%3D");
 		assertThat(UrlEncodingUtils.decode("%3D")).isEqualTo("=");
 		assertThat(UrlEncodingUtils.decode(UrlEncodingUtils.encode("테스트")))

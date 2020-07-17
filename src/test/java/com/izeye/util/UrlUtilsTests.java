@@ -16,7 +16,7 @@
 
 package com.izeye.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,17 +25,17 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class UrlUtilsTests {
+class UrlUtilsTests {
 
 	@Test
-	public void testHasProtocol() {
+	void testHasProtocol() {
 		assertThat(UrlUtils.hasProtocol("www.google.com")).isFalse();
 		assertThat(UrlUtils.hasProtocol("http://www.google.com")).isTrue();
 		assertThat(UrlUtils.hasProtocol("https://www.google.com")).isTrue();
 	}
 
 	@Test
-	public void testPrependHttpProtocolIfAbsent() {
+	void testPrependHttpProtocolIfAbsent() {
 		assertThat(UrlUtils.prependHttpProtocolIfAbsent("www.google.com"))
 				.isEqualTo("http://www.google.com");
 		assertThat(UrlUtils.prependHttpProtocolIfAbsent("http://www.google.com"))
@@ -45,7 +45,7 @@ public class UrlUtilsTests {
 	}
 
 	@Test
-	public void testAddParameter() {
+	void testAddParameter() {
 		assertThat(UrlUtils.addParameter("http://www.google.com", "name", "value"))
 				.isEqualTo("http://www.google.com?name=value");
 		assertThat(UrlUtils.addParameter("http://www.google.com/#ref", "name", "value"))
@@ -57,7 +57,7 @@ public class UrlUtilsTests {
 	}
 
 	@Test
-	public void printComponents() {
+	void printComponents() {
 		String url = "https://www.google.com/path1/path2?parameter1=value1&parameter2=%EC%95%88%EB%85%95#myAnchor";
 		UrlUtils.printComponents(url);
 	}

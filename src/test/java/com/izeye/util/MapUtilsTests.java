@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,10 +29,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class MapUtilsTests {
+class MapUtilsTests {
 
 	@Test
-	public void testGetValueByPath() {
+	void testGetValueByPath() {
 		Map<String, Object> map = new HashMap<>();
 		Map<String, Object> fullNameMap = new HashMap<>();
 		fullNameMap.put("first_name", "Johnny");
@@ -48,7 +48,7 @@ public class MapUtilsTests {
 	}
 
 	@Test
-	public void testPutValueIntoList() {
+	void testPutValueIntoList() {
 		Map<String, List<Integer>> map = new HashMap<>();
 
 		MapUtils.putValueIntoList(map, "a", 1);

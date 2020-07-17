@@ -16,7 +16,7 @@
 
 package com.izeye.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class ThreadLocalRandomTests {
+class ThreadLocalRandomTests {
 
 	@Test
-	public void test() {
+	void test() {
 		// This test could be failed because this test relies on random.
 		assertThat(ThreadLocalRandom.current().nextInt(100))
 				.isNotEqualTo(ThreadLocalRandom.current().nextInt(100));

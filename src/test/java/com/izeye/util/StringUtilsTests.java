@@ -17,7 +17,7 @@
 package com.izeye.util;
 
 import com.izeye.util.StringUtils.FieldDescription;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,10 +26,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class StringUtilsTests {
+class StringUtilsTests {
 
 	@Test
-	public void testReplaceField() {
+	void testReplaceField() {
 		String expected = "1,2,3,4\t5,6,100,8\t9,10,11,12";
 		String target = "1,2,3,4\t5,6,7,8\t9,10,11,12";
 		String replacement = "100";
@@ -48,7 +48,7 @@ public class StringUtilsTests {
 	}
 
 	@Test
-	public void testGetFirstNotEmptyValue() {
+	void testGetFirstNotEmptyValue() {
 		assertThat(StringUtils.getFirstNotEmptyValue(null, null, null)).isNull();
 		assertThat(StringUtils.getFirstNotEmptyValue("1", null, null)).isEqualTo("1");
 		assertThat(StringUtils.getFirstNotEmptyValue(null, "2", null)).isEqualTo("2");
