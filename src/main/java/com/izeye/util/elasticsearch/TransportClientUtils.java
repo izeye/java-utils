@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -42,21 +42,17 @@ public final class TransportClientUtils {
 
 	private static final String CLIENT_TRANSPORT_SNIFF = "client.transport.sniff";
 
-	public static String search(String clusterName, String hostname, int port,
-			String indexName, String query) {
+	public static String search(String clusterName, String hostname, int port, String indexName, String query) {
 		Client client = createClient(clusterName, hostname, port);
-		SearchRequestBuilder requestBuilder = client.prepareSearch(indexName)
-				.setQuery(query);
+		SearchRequestBuilder requestBuilder = client.prepareSearch(indexName).setQuery(query);
 		SearchResponse response = requestBuilder.execute().actionGet();
 		return response.toString();
 	}
 
 	private static Client createClient(String clusterName, String hostname, int port) {
-		TransportClient client = TransportClient.builder().settings(settings(clusterName))
-				.build();
+		TransportClient client = TransportClient.builder().settings(settings(clusterName)).build();
 		try {
-			client.addTransportAddress(new InetSocketTransportAddress(
-					InetAddress.getByName(hostname), port));
+			client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(hostname), port));
 			return client;
 		}
 		catch (UnknownHostException ex) {
@@ -65,8 +61,7 @@ public final class TransportClientUtils {
 	}
 
 	private static Settings settings(String clusterName) {
-		return Settings.settingsBuilder().put(CLUSTER_NAME, clusterName)
-				.put(CLIENT_TRANSPORT_SNIFF, true).build();
+		return Settings.settingsBuilder().put(CLUSTER_NAME, clusterName).put(CLIENT_TRANSPORT_SNIFF, true).build();
 	}
 
 	private TransportClientUtils() {

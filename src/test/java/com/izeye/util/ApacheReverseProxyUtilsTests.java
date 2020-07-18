@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -34,10 +34,8 @@ class ApacheReverseProxyUtilsTests {
 	@Test
 	void getIpAddressInfoWhenNoXForwardedForReturnsItself() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
-		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR))
-				.thenReturn("client");
-		ApacheReverseProxyUtils.IpAddressInfo ipAddressInfo = ApacheReverseProxyUtils
-				.getIpAddressInfo(request);
+		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR)).thenReturn("client");
+		ApacheReverseProxyUtils.IpAddressInfo ipAddressInfo = ApacheReverseProxyUtils.getIpAddressInfo(request);
 		assertThat(ipAddressInfo.getRemoteIpAddress()).isEqualTo("client");
 		assertThat(ipAddressInfo.getXForwardedFor()).isNull();
 	}
@@ -45,10 +43,8 @@ class ApacheReverseProxyUtilsTests {
 	@Test
 	void getIpAddressInfo() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
-		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR))
-				.thenReturn("client, proxy1, proxy2");
-		ApacheReverseProxyUtils.IpAddressInfo ipAddressInfo = ApacheReverseProxyUtils
-				.getIpAddressInfo(request);
+		when(request.getHeader(ApacheReverseProxyUtils.HEADER_X_FORWARDED_FOR)).thenReturn("client, proxy1, proxy2");
+		ApacheReverseProxyUtils.IpAddressInfo ipAddressInfo = ApacheReverseProxyUtils.getIpAddressInfo(request);
 		assertThat(ipAddressInfo.getRemoteIpAddress()).isEqualTo("proxy2");
 		assertThat(ipAddressInfo.getXForwardedFor()).isEqualTo("client, proxy1");
 	}

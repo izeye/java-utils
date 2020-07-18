@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -59,8 +59,7 @@ class XmlUtilsTests {
 
 		NodeList personNodeList = document.getElementsByTagName("person");
 		Element personElement = (Element) personNodeList.item(0);
-		assertThat(XmlUtils.getTextContent(personElement, "firstName"))
-				.isEqualTo("Johnny");
+		assertThat(XmlUtils.getTextContent(personElement, "firstName")).isEqualTo("Johnny");
 		assertThat(XmlUtils.getTextContent(personElement, "middleName")).isNull();
 	}
 
@@ -97,8 +96,7 @@ class XmlUtilsTests {
 		Element personElement = XmlUtils.appendElement(personsElement, "person");
 		XmlUtils.appendElementTextContent(personElement, "firstName", "John");
 		XmlUtils.appendElementTextContent(personElement, "lastName", "Kim");
-		assertThat(XmlUtils.getChildElementNames(personElement))
-				.containsExactly("firstName", "lastName");
+		assertThat(XmlUtils.getChildElementNames(personElement)).containsExactly("firstName", "lastName");
 	}
 
 	@Test

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -40,8 +40,7 @@ public final class SecurityUtils {
 	public static String toHmacSha256HexString(byte[] secretKey, String message) {
 		try {
 			Mac mac = Mac.getInstance(ALGORITHM_HMAC_SHA256);
-			SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey,
-					ALGORITHM_HMAC_SHA256);
+			SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, ALGORITHM_HMAC_SHA256);
 			mac.init(secretKeySpec);
 			byte[] bytes = mac.doFinal(message.getBytes());
 			StringBuilder sb = new StringBuilder();

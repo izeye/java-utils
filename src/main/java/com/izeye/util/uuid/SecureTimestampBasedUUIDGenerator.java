@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,15 +44,13 @@ public class SecureTimestampBasedUUIDGenerator implements TimestampBasedUUIDGene
 
 	private static final int RANDOM_SIZE = Integer.BYTES;
 
-	private static final int SIZE = IP_ADDRESS_SIZE + TIMESTAMP_SIZE + COUNTER_SIZE
-			+ RANDOM_SIZE;
+	private static final int SIZE = IP_ADDRESS_SIZE + TIMESTAMP_SIZE + COUNTER_SIZE + RANDOM_SIZE;
 
 	static {
 		try {
 			LOCAL_IP_ADDRESS = InetAddress.getLocalHost().getAddress();
 			if (LOCAL_IP_ADDRESS.length != IP_ADDRESS_SIZE) {
-				throw new IllegalStateException(
-						"Only support IPv4 addresses but was: " + LOCAL_IP_ADDRESS);
+				throw new IllegalStateException("Only support IPv4 addresses but was: " + LOCAL_IP_ADDRESS);
 			}
 		}
 		catch (UnknownHostException ex) {

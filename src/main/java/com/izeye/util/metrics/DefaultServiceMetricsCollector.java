@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -40,7 +40,7 @@ public class DefaultServiceMetricsCollector implements ServiceMetricsCollector {
 	@Override
 	public void collect(long processTimeInMillis) {
 		this.requestCount.increment();
-		if (processTimeInMillis > timeoutInMillis) {
+		if (processTimeInMillis > this.timeoutInMillis) {
 			this.timeoutCount.increment();
 		}
 		this.accumulatedProcessTimeInMillis.add(processTimeInMillis);
@@ -50,10 +50,8 @@ public class DefaultServiceMetricsCollector implements ServiceMetricsCollector {
 	public ServiceMetrics getThenReset() {
 		long requestCount = this.requestCount.sumThenReset();
 		long timeoutCount = this.timeoutCount.sumThenReset();
-		long accumulatedProcessTimeInMillis = this.accumulatedProcessTimeInMillis
-				.sumThenReset();
-		long averageProcessTimeInMillis = (requestCount == 0L) ? 0L
-				: accumulatedProcessTimeInMillis / requestCount;
+		long accumulatedProcessTimeInMillis = this.accumulatedProcessTimeInMillis.sumThenReset();
+		long averageProcessTimeInMillis = (requestCount == 0L) ? 0L : accumulatedProcessTimeInMillis / requestCount;
 		return new ServiceMetrics(requestCount, timeoutCount, averageProcessTimeInMillis);
 	}
 

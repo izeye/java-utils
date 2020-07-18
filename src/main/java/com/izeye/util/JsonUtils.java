@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -58,10 +58,8 @@ public final class JsonUtils {
 
 		if (o instanceof Map) {
 			Map<String, Object> map = (Map<String, Object>) o;
-			return map.entrySet().stream()
-					.map((entry) -> new StringBuilder().append('"').append(entry.getKey())
-							.append("\":").append(toJson(entry.getValue())))
-					.collect(Collectors.joining(",", "{", "}"));
+			return map.entrySet().stream().map((entry) -> new StringBuilder().append('"').append(entry.getKey())
+					.append("\":").append(toJson(entry.getValue()))).collect(Collectors.joining(",", "{", "}"));
 		}
 
 		if (o instanceof Collection) {
@@ -77,8 +75,7 @@ public final class JsonUtils {
 		}
 
 		if (o instanceof String) {
-			String escaped = PATTERN_DOUBLE_QUOTES.matcher((String) o)
-					.replaceAll("\\\\\"");
+			String escaped = PATTERN_DOUBLE_QUOTES.matcher((String) o).replaceAll("\\\\\"");
 			return new StringBuilder().append('"').append(escaped).append('"').toString();
 		}
 
@@ -136,8 +133,7 @@ public final class JsonUtils {
 	}
 
 	private static String arrayToJson(Stream<Object> arrayStream) {
-		return arrayStream.map((element) -> toJson(element))
-				.collect(Collectors.joining(",", "[", "]"));
+		return arrayStream.map((element) -> toJson(element)).collect(Collectors.joining(",", "[", "]"));
 	}
 
 	private JsonUtils() {

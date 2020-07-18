@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -79,8 +79,7 @@ class JacksonJsonUtilsTests {
 	void testReadPath() {
 		String json = "{\"a1\":{\"b1\":{\"c1\":\"a1b1c1\"},\"b2\":[{\"c1\":\"a1b2c1\"},{\"c2\":\"a1b2c2\"},{\"c3\":\"a1b2c3\"}]}}";
 		String path = "a1.b1.c1";
-		assertThat(JacksonJsonUtils.readPath(json, path, String.class))
-				.isEqualTo("a1b1c1");
+		assertThat(JacksonJsonUtils.readPath(json, path, String.class)).isEqualTo("a1b1c1");
 	}
 
 	@Test
