@@ -50,4 +50,8 @@ public abstract class UrlEncodingUtils {
 		}
 	}
 
+	public static boolean isEncoded(String value) {
+		return !decode(value).equals(value);
+	}
+
 }

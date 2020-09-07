@@ -34,4 +34,11 @@ class UrlEncodingUtilsTests {
 		assertThat(UrlEncodingUtils.decode(UrlEncodingUtils.encode("테스트"))).isEqualTo("테스트");
 	}
 
+	@Test
+	void isEncoded() {
+		assertThat(UrlEncodingUtils.isEncoded("test")).isFalse();
+		assertThat(UrlEncodingUtils.isEncoded("테스트")).isFalse();
+		assertThat(UrlEncodingUtils.isEncoded(UrlEncodingUtils.encode("테스트"))).isTrue();
+	}
+
 }
