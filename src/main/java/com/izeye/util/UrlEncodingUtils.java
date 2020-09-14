@@ -17,8 +17,11 @@
 package com.izeye.util;
 
 import java.io.UnsupportedEncodingException;
+import java.net.IDN;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Utilities for URL encoding and decoding.
@@ -41,6 +44,13 @@ public abstract class UrlEncodingUtils {
 		}
 	}
 
+	public static String encodeIfNecessary(String value) {
+		if (isEncoded(value)) {
+			return value;
+		}
+		return encode(value);
+	}
+
 	public static String decode(String value) {
 		try {
 			return URLDecoder.decode(value, DEFAULT_ENCODING);
@@ -52,6 +62,34 @@ public abstract class UrlEncodingUtils {
 
 	public static boolean isEncoded(String value) {
 		return !decode(value).equals(value);
+	}
+
+	public static String punycode(String domain) {
+		return IDN.toASCII(domain);
+	}
+
+	public static String encodeUrlComponentsIfNecessary(String url) {
+		UrlComponentParser.UrlComponents components = UrlComponentParser.parse(url);
+
+		String punycodedDomain = punycode(components.getDomain());
+
+		String path = components.getPath();
+		String encodedPath = "";
+		for (String pathComponent : path.split("/")) {
+			if (pathComponent.isEmpty()) {
+				continue;
+			}
+			encodedPath += "/" + encodeIfNecessary(pathComponent);
+		}
+
+		String query = components.getQuery();
+		String encodedQuery = Arrays.stream(query.split("&")).map((parameter) -> {
+			String[] nameAndValue = parameter.split("=");
+			return nameAndValue[0] + "=" + encodeIfNecessary(nameAndValue[1]);
+		}).collect(Collectors.joining("&"));
+
+		return components.getProtocol() + "://" + punycodedDomain + encodedPath + "?" + encodedQuery + "#"
+				+ encodeIfNecessary(components.getFragment());
 	}
 
 }

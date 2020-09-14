@@ -41,4 +41,34 @@ class UrlEncodingUtilsTests {
 		assertThat(UrlEncodingUtils.isEncoded(UrlEncodingUtils.encode("테스트"))).isTrue();
 	}
 
+	@Test
+	void encodeIfNecessaryWhenNecessary() {
+		String value = "테스트";
+		assertThat(UrlEncodingUtils.encodeIfNecessary(value)).isEqualTo(UrlEncodingUtils.encode(value));
+	}
+
+	@Test
+	void encodeIfNecessaryWhenUnnecessary() {
+		String value = UrlEncodingUtils.encode("테스트");
+		assertThat(UrlEncodingUtils.encodeIfNecessary(value)).isEqualTo(value);
+	}
+
+	@Test
+	void punycode() {
+		assertThat(UrlEncodingUtils.punycode("테스트")).isEqualTo("xn--9t4b11yi5a");
+	}
+
+	@Test
+	void encodeUrlComponentsIfNecessaryWhenNecessary() {
+		String url = "https://테스트/경로1/경로2?param1=값1&param2=값2#여기";
+		String expected = "https://xn--9t4b11yi5a/%EA%B2%BD%EB%A1%9C1/%EA%B2%BD%EB%A1%9C2?param1=%EA%B0%921&param2=%EA%B0%922#%EC%97%AC%EA%B8%B0";
+		assertThat(UrlEncodingUtils.encodeUrlComponentsIfNecessary(url)).isEqualTo(expected);
+	}
+
+	@Test
+	void encodeUrlComponentsIfNecessaryWhenUnnecessary() {
+		String url = "https://www.google.com/path1/path2?param1=1&param2=2#here";
+		assertThat(UrlEncodingUtils.encodeUrlComponentsIfNecessary(url)).isEqualTo(url);
+	}
+
 }
