@@ -22,7 +22,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'checkstyle'
 apply plugin: 'io.spring.javaformat'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
 	jcenter()
